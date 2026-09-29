@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/common/service-request.schema.json",
+  "title": "ServiceRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "correlationId", "actor", "payload"],
+  "properties": {
+    "version": { "const": 1 },
+    "correlationId": { "type": "string", "format": "uuid" },
+    "causationId": { "type": "string", "format": "uuid" },
+    "idempotencyKey": { "type": "string", "minLength": 16, "maxLength": 128 },
+    "actor": { "$ref": "actor-context.schema.json" },
+    "payload": { "type": "object" }
+  }
+}

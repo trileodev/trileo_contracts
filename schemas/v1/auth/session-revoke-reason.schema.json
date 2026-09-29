@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/auth/session-revoke-reason.schema.json","title":"SessionRevokeReason","type":"string","enum":["logout","user_revoked","password_reset","refresh_reuse","expired","account_disabled","administrative"]}

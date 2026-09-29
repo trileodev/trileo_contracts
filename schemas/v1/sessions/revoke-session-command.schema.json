@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/sessions/revoke-session-command.schema.json","title":"RevokeSessionCommand","type":"object","additionalProperties":false,"required":["sessionId"],"properties":{"sessionId":{"type":"string","format":"uuid"}}}

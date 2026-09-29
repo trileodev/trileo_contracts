@@ -1,0 +1,11 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/users/current-user-response.schema.json","title":"CurrentUserResponse","type":"object","additionalProperties":false,
+  "required":["id","firstName","email","emailVerificationStatus","accountStatus","loginMethods","createdAt","updatedAt"],
+  "properties":{
+    "id":{"type":"string","format":"uuid"},"firstName":{"type":"string","minLength":1,"maxLength":100},"lastName":{"type":"string","minLength":1,"maxLength":100},
+    "email":{"type":"string","format":"email","maxLength":254},
+    "emailVerificationStatus":{"$ref":"../auth/email-verification-status.schema.json"},"accountStatus":{"$ref":"../auth/account-status.schema.json"},
+    "loginMethods":{"type":"array","minItems":1,"uniqueItems":true,"items":{"$ref":"../auth/login-method.schema.json"}},
+    "createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}
+  }
+}

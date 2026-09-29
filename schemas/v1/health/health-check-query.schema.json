@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/health/health-check-query.schema.json","title":"HealthCheckQuery","type":"object","additionalProperties":false,"maxProperties":0}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/common/platform-role.schema.json",
+  "title": "PlatformRole",
+  "type": "string",
+  "enum": ["user", "administrator"]
+}

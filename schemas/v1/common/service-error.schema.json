@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/common/service-error.schema.json",
+  "title": "ServiceError",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["code", "message", "statusCode", "correlationId", "retryable", "timestamp"],
+  "properties": {
+    "code": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]{1,63}$" },
+    "message": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "statusCode": { "type": "integer", "minimum": 400, "maximum": 599 },
+    "correlationId": { "type": "string", "format": "uuid" },
+    "retryable": { "type": "boolean" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "details": { "type": "object", "maxProperties": 20, "additionalProperties": true },
+    "fieldErrors": { "type": "array", "maxItems": 50, "items": { "$ref": "field-error.schema.json" } }
+  }
+}

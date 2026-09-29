@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/auth/auth-challenge-purpose.schema.json","title":"AuthChallengePurpose","type":"string","enum":["verify_email","reset_code","reset_password","set_password"]}

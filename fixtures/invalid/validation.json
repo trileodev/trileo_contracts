@@ -1,0 +1,12 @@
+[
+  {"schema":"https://contracts.trileo.dev/v1/auth/register-request.schema.json","data":{"firstName":"","email":"invalid","password":"short","termsVersion":""},"reason":"registration bounds"},
+  {"schema":"https://contracts.trileo.dev/v1/auth/login-request.schema.json","data":{"email":"umair@example.com"},"reason":"missing password"},
+  {"schema":"https://contracts.trileo.dev/v1/auth/request-password-reset-request.schema.json","data":{"email":"invalid"},"reason":"malformed email"},
+  {"schema":"https://contracts.trileo.dev/v1/auth/verify-email-request.schema.json","data":{"code":"42731"},"reason":"verification code must contain exactly six digits"},
+  {"schema":"https://contracts.trileo.dev/v1/auth/verify-email-request.schema.json","data":{"code":"12A456"},"reason":"verification code must be numeric"},
+  {"schema":"https://contracts.trileo.dev/v1/auth/verify-email-request.schema.json","data":{"code":"042731","userId":"11111111-1111-4111-8111-111111111111"},"reason":"verification identity cannot be supplied by the client"},
+  {"schema":"https://contracts.trileo.dev/v1/auth/complete-password-reset-request.schema.json","data":{"challengeToken":"short","newPassword":"short"},"reason":"challenge and password bounds"},
+  {"schema":"https://contracts.trileo.dev/v1/sessions/list-sessions-query.schema.json","data":{"limit":51},"reason":"session page maximum"},
+  {"schema":"https://contracts.trileo.dev/v1/sessions/revoke-session-command.schema.json","data":{"sessionId":"not-a-uuid"},"reason":"malformed session ID"},
+  {"schema":"https://contracts.trileo.dev/v1/common/service-error.schema.json","data":{"code":"bad-code","message":"x","statusCode":200,"correlationId":"bad","retryable":false,"timestamp":"today"},"reason":"malformed normalized error"}
+]

@@ -1,0 +1,5 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/auth/auth-session-response.schema.json","title":"AuthSessionResponse","type":"object","additionalProperties":false,
+  "required":["user","session","emailVerificationStatus","loginMethods","accessExpiresAt"],
+  "properties":{"user":{"$ref":"../users/current-user-response.schema.json"},"session":{"$ref":"../sessions/session-response.schema.json"},"emailVerificationStatus":{"$ref":"email-verification-status.schema.json"},"loginMethods":{"type":"array","minItems":1,"uniqueItems":true,"items":{"$ref":"login-method.schema.json"}},"accessExpiresAt":{"type":"string","format":"date-time"},"csrfToken":{"type":"string","minLength":32,"maxLength":256}}
+}

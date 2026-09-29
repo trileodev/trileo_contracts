@@ -1,0 +1,21 @@
+{
+  "subjects": {
+    "healthCheck": "health.check.v1",
+    "authRegister": "auth.register.v1", "authLogin": "auth.login.v1", "authRefresh": "auth.refresh.v1", "authLogout": "auth.logout.v1",
+    "authVerifyEmail": "auth.verify-email.v1", "authResendVerification": "auth.verify-email.resend.v1",
+    "authRequestPasswordReset": "auth.password-reset.request.v1", "authCompletePasswordReset": "auth.password-reset.complete.v1",
+    "authChangePassword": "auth.password.change.v1", "authSetPassword": "auth.password.set.v1",
+    "usersGetCurrent": "users.get-current.v1", "sessionsGetCurrent": "sessions.get-current.v1", "sessionsList": "sessions.list.v1",
+    "sessionsRevoke": "sessions.revoke.v1", "sessionsRevokeAll": "sessions.revoke-all.v1"
+  },
+  "requiredFields": {
+    "schemas/v1/common/actor-context.schema.json": ["userId", "sessionId", "roles"],
+    "schemas/v1/common/service-request.schema.json": ["version", "correlationId", "actor", "payload"],
+    "schemas/v1/common/service-response.schema.json": ["version", "correlationId", "data"],
+    "schemas/v1/common/service-error.schema.json": ["code", "message", "statusCode", "correlationId", "retryable", "timestamp"],
+    "schemas/v1/auth/register-request.schema.json": ["firstName", "email", "password", "termsVersion"],
+    "schemas/v1/auth/login-request.schema.json": ["email", "password"],
+    "schemas/v1/auth/verify-email-request.schema.json": ["code"],
+    "schemas/v1/auth/auth-session-response.schema.json": ["user", "session", "emailVerificationStatus", "loginMethods", "accessExpiresAt"]
+  }
+}

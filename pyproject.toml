@@ -1,0 +1,6 @@
+[project]
+name = "trileo-contracts"
+version = "1.0.0"
+requires-python = ">=3.12"
+description = "Generated Python parity models for Trileo wire contracts"
+

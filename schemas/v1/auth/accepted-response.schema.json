@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/auth/accepted-response.schema.json","title":"AcceptedResponse","type":"object","additionalProperties":false,"required":["accepted"],"properties":{"accepted":{"const":true}}}

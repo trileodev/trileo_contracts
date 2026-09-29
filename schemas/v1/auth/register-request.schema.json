@@ -1,0 +1,11 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/auth/register-request.schema.json","title":"RegisterRequest","type":"object","additionalProperties":false,
+  "required":["firstName","email","password","termsVersion"],
+  "properties":{
+    "firstName":{"type":"string","minLength":1,"maxLength":100,"pattern":"^[^\\p{Cc}]+$"},
+    "lastName":{"type":"string","minLength":1,"maxLength":100,"pattern":"^[^\\p{Cc}]+$"},
+    "email":{"type":"string","format":"email","maxLength":254},
+    "password":{"type":"string","minLength":12,"maxLength":128},
+    "termsVersion":{"type":"string","minLength":1,"maxLength":64,"pattern":"^[A-Za-z0-9._-]+$"}
+  }
+}

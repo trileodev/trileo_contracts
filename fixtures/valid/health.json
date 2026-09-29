@@ -1,0 +1,4 @@
+[
+  {"schema":"https://contracts.trileo.dev/v1/health/health-check-query.schema.json","data":{}},
+  {"schema":"https://contracts.trileo.dev/v1/health/health-check-response.schema.json","data":{"service":"main","status":"ready","timestamp":"2026-01-01T00:00:00.000Z"}}
+]

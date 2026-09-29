@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "generated/typescript"
+  },
+  "include": ["generated/typescript/**/*.ts"],
+  "exclude": ["tests"]
+}

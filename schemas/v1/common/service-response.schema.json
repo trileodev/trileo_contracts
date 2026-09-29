@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/common/service-response.schema.json",
+  "title": "ServiceResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "correlationId", "data"],
+  "properties": {
+    "version": { "const": 1 },
+    "correlationId": { "type": "string", "format": "uuid" },
+    "data": {}
+  }
+}

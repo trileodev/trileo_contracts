@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/auth/refresh-command.schema.json","title":"RefreshCommand","type":"object","additionalProperties":false,"required":["refreshToken"],"properties":{"refreshToken":{"type":"string","minLength":32,"maxLength":512}}}

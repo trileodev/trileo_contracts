@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/auth/login-method.schema.json","title":"LoginMethod","type":"string","enum":["password","google","github"]}

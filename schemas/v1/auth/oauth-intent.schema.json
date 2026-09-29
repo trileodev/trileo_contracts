@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/auth/oauth-intent.schema.json","title":"OAuthIntent","type":"string","enum":["login","connect"]}

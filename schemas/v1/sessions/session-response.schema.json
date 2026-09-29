@@ -1,0 +1,5 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/sessions/session-response.schema.json","title":"SessionResponse","type":"object","additionalProperties":false,
+  "required":["id","createdAt","lastUsedAt","idleExpiresAt","absoluteExpiresAt","deviceLabel","isCurrent"],
+  "properties":{"id":{"type":"string","format":"uuid"},"createdAt":{"type":"string","format":"date-time"},"lastUsedAt":{"type":"string","format":"date-time"},"idleExpiresAt":{"type":"string","format":"date-time"},"absoluteExpiresAt":{"type":"string","format":"date-time"},"deviceLabel":{"type":"string","minLength":1,"maxLength":200},"isCurrent":{"type":"boolean"}}
+}

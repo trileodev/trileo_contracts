@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://contracts.trileo.dev/v1/auth/disconnect-identity-request.schema.json","title":"DisconnectIdentityRequest","type":"object","additionalProperties":false,"required":["provider"],"properties":{"provider":{"enum":["google","github"]}}}

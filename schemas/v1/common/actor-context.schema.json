@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/common/actor-context.schema.json",
+  "title": "ActorContext",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["userId", "sessionId", "roles"],
+  "properties": {
+    "userId": { "type": "string", "format": "uuid" },
+    "sessionId": { "type": "string", "format": "uuid" },
+    "roles": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "platform-role.schema.json" } }
+  }
+}

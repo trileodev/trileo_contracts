@@ -1,0 +1,40 @@
+{
+  "name": "@trileo/contracts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "files": [
+    "dist",
+    "schemas",
+    "subjects"
+  ],
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "generate": "node scripts/generate.mjs",
+    "check:generated": "node scripts/check-generated.mjs",
+    "check:compatibility": "node scripts/check-compatibility.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "npm run generate && tsc -p tsconfig.build.json",
+    "verify": "npm run generate && npm run typecheck && npm test && npm run check:compatibility"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "26.4.0",
+    "json-schema-to-typescript": "16.0.0",
+    "typescript": "7.0.2",
+    "vitest": "4.1.11"
+  }
+}

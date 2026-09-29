@@ -1,0 +1,4 @@
+[
+  {"schema":"https://contracts.trileo.dev/v1/users/get-current-user-query.schema.json","data":{}},
+  {"schema":"https://contracts.trileo.dev/v1/users/current-user-response.schema.json","data":{"id":"11111111-1111-4111-8111-111111111111","firstName":"Umair","email":"umair@example.com","emailVerificationStatus":"verified","accountStatus":"active","loginMethods":["password"],"createdAt":"2026-01-01T00:00:00.000Z","updatedAt":"2026-01-01T00:00:00.000Z"}}
+]
