@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/projects/create-project-command.schema.json",
+  "title": "CreateProjectCommand",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name"],
+  "properties": { "name": { "$ref": "project-name.schema.json" } }
+}

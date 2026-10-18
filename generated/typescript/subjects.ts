@@ -23,5 +23,11 @@ export const SUBJECTS = {
   "sessionsList": "sessions.list.v1",
   "sessionsRevoke": "sessions.revoke.v1",
   "sessionsRevokeAll": "sessions.revoke-all.v1",
+  "projectsCreate": "projects.create.v1",
+  "projectsList": "projects.list.v1",
+  "projectsGet": "projects.get.v1",
+  "projectsUpdate": "projects.update.v1",
+  "projectsArchive": "projects.archive.v1",
+  "projectsRestore": "projects.restore.v1",
 } as const;
 export type SubjectName = typeof SUBJECTS[keyof typeof SUBJECTS];

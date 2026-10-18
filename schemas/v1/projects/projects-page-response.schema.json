@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/projects/projects-page-response.schema.json",
+  "title": "ProjectsPageResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["items"],
+  "properties": {
+    "items": { "type": "array", "maxItems": 50, "items": { "$ref": "project-response.schema.json" } },
+    "nextCursor": { "type": "string", "minLength": 1, "maxLength": 512 }
+  }
+}
