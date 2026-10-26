@@ -3,4 +3,35 @@ name = "trileo-contracts"
 version = "1.0.0"
 requires-python = ">=3.12"
 description = "Generated Python parity models for Trileo wire contracts"
+dependencies = [
+    # format-nongpl brings the real checkers for date-time/email/uri; without
+    # them jsonschema treats `format` as a comment and silently disagrees with
+    # Ajv. `regex` is required because the schemas use ECMAScript \p{...}
+    # escapes, which Python's own `re` cannot parse at all.
+    "jsonschema[format-nongpl]>=4.23.0",
+    "regex>=2024.11.6",
+]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.0",
+    "ruff>=0.14.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# The package is generated output, not hand-written source. `npm run generate`
+# produces it from schemas/v1; never edit it, and never commit an edit to it.
+[tool.hatch.build.targets.wheel]
+packages = ["generated/python/trileo_contracts"]
+
+[tool.pytest.ini_options]
+pythonpath = ["generated/python"]
+testpaths = ["tests_python"]
+
+[tool.ruff]
+line-length = 100
+# Generated code is checked by the generator's own tests, not by lint.
+extend-exclude = ["generated"]
