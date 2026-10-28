@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/organizations/organization-role.schema.json",
+  "title": "OrganizationRole",
+  "type": "string",
+  "enum": [
+    "org_admin",
+    "member"
+  ]
+}

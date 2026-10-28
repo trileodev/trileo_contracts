@@ -170,6 +170,45 @@ class VerifyPasswordResetCodeRequest(TypedDict):
     code: str
 
 
+class AddProjectCollaboratorCommand(TypedDict):
+    projectId: str
+    userId: str
+    role: ProjectRole
+
+
+class ListProjectCollaboratorsQuery(TypedDict):
+    projectId: str
+    cursor: NotRequired[str]
+    limit: NotRequired[int]
+
+
+class ProjectCollaboratorResponse(TypedDict):
+    id: str
+    projectId: str
+    userId: str
+    role: ProjectRole
+    createdAt: str
+
+
+class ProjectCollaboratorsPageResponse(TypedDict):
+    items: list[ProjectCollaboratorResponse]
+    nextCursor: NotRequired[str]
+
+
+ProjectRole = Literal["owner", "editor", "viewer"]
+
+
+class RemoveProjectCollaboratorCommand(TypedDict):
+    projectId: str
+    userId: str
+
+
+class UpdateProjectCollaboratorCommand(TypedDict):
+    projectId: str
+    userId: str
+    role: ProjectRole
+
+
 class ActorContext(TypedDict):
     userId: str
     sessionId: str
@@ -187,6 +226,16 @@ class AnonymousServiceRequest(TypedDict):
 class FieldError(TypedDict):
     field: str
     message: str
+
+
+class OrganizationServiceRequest(TypedDict):
+    version: Literal[1]
+    correlationId: str
+    causationId: NotRequired[str]
+    idempotencyKey: NotRequired[str]
+    actor: ActorContext
+    organizationId: str
+    payload: dict[str, Any]
 
 
 class PageRequest(TypedDict):
@@ -233,6 +282,109 @@ class HealthCheckResponse(TypedDict):
     timestamp: str
 
 
+class AcceptOrganizationInvitationCommand(TypedDict):
+    invitationId: str
+
+
+class CreateOrganizationCommand(TypedDict):
+    name: OrganizationName
+
+
+class CreateOrganizationInvitationCommand(TypedDict):
+    email: str
+    role: OrganizationRole
+
+
+class GetOrganizationMemberQuery(TypedDict):
+    userId: str
+
+
+class GetOrganizationQuery(TypedDict):
+    pass
+
+
+class ListOrganizationInvitationsQuery(TypedDict):
+    cursor: NotRequired[str]
+    limit: NotRequired[int]
+
+
+class ListOrganizationMembersQuery(TypedDict):
+    cursor: NotRequired[str]
+    limit: NotRequired[int]
+
+
+class ListOrganizationsQuery(TypedDict):
+    cursor: NotRequired[str]
+    limit: NotRequired[int]
+
+
+class OrganizationInvitationResponse(TypedDict):
+    id: str
+    organizationId: str
+    organizationName: OrganizationName
+    email: str
+    role: OrganizationRole
+    status: Literal["pending", "accepted", "revoked", "expired"]
+    expiresAt: str
+    createdAt: str
+
+
+class OrganizationInvitationsPageResponse(TypedDict):
+    items: list[OrganizationInvitationResponse]
+    nextCursor: NotRequired[str]
+
+
+class OrganizationMemberResponse(TypedDict):
+    id: str
+    organizationId: str
+    userId: str
+    displayName: str
+    role: OrganizationRole
+    createdAt: str
+
+
+class OrganizationMembersPageResponse(TypedDict):
+    items: list[OrganizationMemberResponse]
+    nextCursor: NotRequired[str]
+
+
+OrganizationName = str
+
+
+class OrganizationResponse(TypedDict):
+    id: str
+    name: OrganizationName
+    isPersonal: bool
+    role: OrganizationRole
+    createdAt: str
+    updatedAt: str
+
+
+OrganizationRole = Literal["org_admin", "member"]
+
+
+class OrganizationsPageResponse(TypedDict):
+    items: list[OrganizationResponse]
+    nextCursor: NotRequired[str]
+
+
+class RemoveOrganizationMemberCommand(TypedDict):
+    userId: str
+
+
+class RevokeOrganizationInvitationCommand(TypedDict):
+    invitationId: str
+
+
+class UpdateOrganizationCommand(TypedDict):
+    name: OrganizationName
+
+
+class UpdateOrganizationMemberCommand(TypedDict):
+    userId: str
+    role: OrganizationRole
+
+
 class ArchiveProjectCommand(TypedDict):
     projectId: str
 
@@ -249,6 +401,23 @@ class ListProjectsQuery(TypedDict):
     status: NotRequired[Literal["active", "archived"]]
     cursor: NotRequired[str]
     limit: NotRequired[int]
+
+
+class OrganizationProjectResponse(TypedDict):
+    id: str
+    name: ProjectName
+    status: Literal["active", "archived"]
+    framework: Literal["mern", None]
+    createdAt: str
+    updatedAt: str
+    archivedAt: Any
+    organizationId: str
+    currentUserRole: ProjectRole
+
+
+class OrganizationProjectsPageResponse(TypedDict):
+    items: list[OrganizationProjectResponse]
+    nextCursor: NotRequired[str]
 
 
 ProjectName = str

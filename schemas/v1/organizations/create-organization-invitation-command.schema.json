@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/organizations/create-organization-invitation-command.schema.json",
+  "title": "CreateOrganizationInvitationCommand",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "email",
+    "role"
+  ],
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254
+    },
+    "role": {
+      "$ref": "organization-role.schema.json"
+    }
+  }
+}

@@ -672,6 +672,172 @@ SCHEMAS: Final[dict[str, dict[str, Any]]] = {
             },
         },
     },
+    "https://contracts.trileo.dev/v1/collaborators/add-project-collaborator-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/collaborators/add-project-collaborator-command.schema.json",
+        "title": "AddProjectCollaboratorCommand",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "projectId",
+            "userId",
+            "role",
+        ],
+        "properties": {
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "userId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "role": {
+                "$ref": "project-role.schema.json",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/collaborators/list-project-collaborators-query.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/collaborators/list-project-collaborators-query.schema.json",
+        "title": "ListProjectCollaboratorsQuery",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "projectId",
+        ],
+        "properties": {
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "cursor": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 20,
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/collaborators/project-collaborator-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/collaborators/project-collaborator-response.schema.json",
+        "title": "ProjectCollaboratorResponse",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "id",
+            "projectId",
+            "userId",
+            "role",
+            "createdAt",
+        ],
+        "properties": {
+            "id": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "userId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "role": {
+                "$ref": "project-role.schema.json",
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/collaborators/project-collaborators-page-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/collaborators/project-collaborators-page-response.schema.json",
+        "title": "ProjectCollaboratorsPageResponse",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "items",
+        ],
+        "properties": {
+            "items": {
+                "type": "array",
+                "maxItems": 50,
+                "items": {
+                    "$ref": "project-collaborator-response.schema.json",
+                },
+            },
+            "nextCursor": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/collaborators/project-role.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/collaborators/project-role.schema.json",
+        "title": "ProjectRole",
+        "type": "string",
+        "enum": [
+            "owner",
+            "editor",
+            "viewer",
+        ],
+    },
+    "https://contracts.trileo.dev/v1/collaborators/remove-project-collaborator-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/collaborators/remove-project-collaborator-command.schema.json",
+        "title": "RemoveProjectCollaboratorCommand",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "projectId",
+            "userId",
+        ],
+        "properties": {
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "userId": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/collaborators/update-project-collaborator-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/collaborators/update-project-collaborator-command.schema.json",
+        "title": "UpdateProjectCollaboratorCommand",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "projectId",
+            "userId",
+            "role",
+        ],
+        "properties": {
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "userId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "role": {
+                "$ref": "project-role.schema.json",
+            },
+        },
+    },
     "https://contracts.trileo.dev/v1/common/actor-context.schema.json": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "$id": "https://contracts.trileo.dev/v1/common/actor-context.schema.json",
@@ -757,6 +923,48 @@ SCHEMAS: Final[dict[str, dict[str, Any]]] = {
                 "type": "string",
                 "minLength": 1,
                 "maxLength": 300,
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/common/organization-service-request.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/common/organization-service-request.schema.json",
+        "title": "OrganizationServiceRequest",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "version",
+            "correlationId",
+            "actor",
+            "organizationId",
+            "payload",
+        ],
+        "properties": {
+            "version": {
+                "const": 1,
+            },
+            "correlationId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "causationId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "idempotencyKey": {
+                "type": "string",
+                "minLength": 16,
+                "maxLength": 128,
+            },
+            "actor": {
+                "$ref": "actor-context.schema.json",
+            },
+            "organizationId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "payload": {
+                "type": "object",
             },
         },
     },
@@ -938,6 +1146,432 @@ SCHEMAS: Final[dict[str, dict[str, Any]]] = {
             },
         },
     },
+    "https://contracts.trileo.dev/v1/organizations/accept-organization-invitation-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/accept-organization-invitation-command.schema.json",
+        "title": "AcceptOrganizationInvitationCommand",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "invitationId",
+        ],
+        "properties": {
+            "invitationId": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/create-organization-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/create-organization-command.schema.json",
+        "title": "CreateOrganizationCommand",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "name",
+        ],
+        "properties": {
+            "name": {
+                "$ref": "organization-name.schema.json",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/create-organization-invitation-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/create-organization-invitation-command.schema.json",
+        "title": "CreateOrganizationInvitationCommand",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "email",
+            "role",
+        ],
+        "properties": {
+            "email": {
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+            },
+            "role": {
+                "$ref": "organization-role.schema.json",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/get-organization-member-query.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/get-organization-member-query.schema.json",
+        "title": "GetOrganizationMemberQuery",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "userId",
+        ],
+        "properties": {
+            "userId": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/get-organization-query.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/get-organization-query.schema.json",
+        "title": "GetOrganizationQuery",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [],
+        "properties": {},
+    },
+    "https://contracts.trileo.dev/v1/organizations/list-organization-invitations-query.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/list-organization-invitations-query.schema.json",
+        "title": "ListOrganizationInvitationsQuery",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [],
+        "properties": {
+            "cursor": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 20,
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/list-organization-members-query.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/list-organization-members-query.schema.json",
+        "title": "ListOrganizationMembersQuery",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [],
+        "properties": {
+            "cursor": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 20,
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/list-organizations-query.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/list-organizations-query.schema.json",
+        "title": "ListOrganizationsQuery",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [],
+        "properties": {
+            "cursor": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "default": 20,
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/organization-invitation-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/organization-invitation-response.schema.json",
+        "title": "OrganizationInvitationResponse",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "id",
+            "organizationId",
+            "organizationName",
+            "email",
+            "role",
+            "status",
+            "expiresAt",
+            "createdAt",
+        ],
+        "properties": {
+            "id": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "organizationId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "organizationName": {
+                "$ref": "organization-name.schema.json",
+            },
+            "email": {
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+            },
+            "role": {
+                "$ref": "organization-role.schema.json",
+            },
+            "status": {
+                "type": "string",
+                "enum": [
+                    "pending",
+                    "accepted",
+                    "revoked",
+                    "expired",
+                ],
+            },
+            "expiresAt": {
+                "type": "string",
+                "format": "date-time",
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/organization-invitations-page-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/organization-invitations-page-response.schema.json",
+        "title": "OrganizationInvitationsPageResponse",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "items",
+        ],
+        "properties": {
+            "items": {
+                "type": "array",
+                "maxItems": 50,
+                "items": {
+                    "$ref": "organization-invitation-response.schema.json",
+                },
+            },
+            "nextCursor": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/organization-member-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/organization-member-response.schema.json",
+        "title": "OrganizationMemberResponse",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "id",
+            "organizationId",
+            "userId",
+            "displayName",
+            "role",
+            "createdAt",
+        ],
+        "properties": {
+            "id": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "organizationId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "userId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "displayName": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 201,
+            },
+            "role": {
+                "$ref": "organization-role.schema.json",
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/organization-members-page-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/organization-members-page-response.schema.json",
+        "title": "OrganizationMembersPageResponse",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "items",
+        ],
+        "properties": {
+            "items": {
+                "type": "array",
+                "maxItems": 50,
+                "items": {
+                    "$ref": "organization-member-response.schema.json",
+                },
+            },
+            "nextCursor": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/organization-name.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/organization-name.schema.json",
+        "title": "OrganizationName",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100,
+        "pattern": "^[^\\s\\u0000-\\u001f\\u007f](?:[^\\u0000-\\u001f\\u007f]*[^\\s\\u0000-\\u001f\\u007f])?$",
+    },
+    "https://contracts.trileo.dev/v1/organizations/organization-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/organization-response.schema.json",
+        "title": "OrganizationResponse",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "id",
+            "name",
+            "isPersonal",
+            "role",
+            "createdAt",
+            "updatedAt",
+        ],
+        "properties": {
+            "id": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "name": {
+                "$ref": "organization-name.schema.json",
+            },
+            "isPersonal": {
+                "type": "boolean",
+            },
+            "role": {
+                "$ref": "organization-role.schema.json",
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time",
+            },
+            "updatedAt": {
+                "type": "string",
+                "format": "date-time",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/organization-role.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/organization-role.schema.json",
+        "title": "OrganizationRole",
+        "type": "string",
+        "enum": [
+            "org_admin",
+            "member",
+        ],
+    },
+    "https://contracts.trileo.dev/v1/organizations/organizations-page-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/organizations-page-response.schema.json",
+        "title": "OrganizationsPageResponse",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "items",
+        ],
+        "properties": {
+            "items": {
+                "type": "array",
+                "maxItems": 50,
+                "items": {
+                    "$ref": "organization-response.schema.json",
+                },
+            },
+            "nextCursor": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/remove-organization-member-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/remove-organization-member-command.schema.json",
+        "title": "RemoveOrganizationMemberCommand",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "userId",
+        ],
+        "properties": {
+            "userId": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/revoke-organization-invitation-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/revoke-organization-invitation-command.schema.json",
+        "title": "RevokeOrganizationInvitationCommand",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "invitationId",
+        ],
+        "properties": {
+            "invitationId": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/update-organization-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/update-organization-command.schema.json",
+        "title": "UpdateOrganizationCommand",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "name",
+        ],
+        "properties": {
+            "name": {
+                "$ref": "organization-name.schema.json",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/organizations/update-organization-member-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/organizations/update-organization-member-command.schema.json",
+        "title": "UpdateOrganizationMemberCommand",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "userId",
+            "role",
+        ],
+        "properties": {
+            "userId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "role": {
+                "$ref": "organization-role.schema.json",
+            },
+        },
+    },
     "https://contracts.trileo.dev/v1/projects/archive-project-command.schema.json": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "$id": "https://contracts.trileo.dev/v1/projects/archive-project-command.schema.json",
@@ -1010,6 +1644,126 @@ SCHEMAS: Final[dict[str, dict[str, Any]]] = {
                 "minimum": 1,
                 "maximum": 50,
                 "default": 20,
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/projects/organization-project-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/projects/organization-project-response.schema.json",
+        "title": "OrganizationProjectResponse",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "id",
+            "name",
+            "status",
+            "framework",
+            "createdAt",
+            "updatedAt",
+            "archivedAt",
+            "organizationId",
+            "currentUserRole",
+        ],
+        "properties": {
+            "id": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "name": {
+                "$ref": "project-name.schema.json",
+            },
+            "status": {
+                "enum": [
+                    "active",
+                    "archived",
+                ],
+            },
+            "framework": {
+                "enum": [
+                    "mern",
+                    None,
+                ],
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time",
+            },
+            "updatedAt": {
+                "type": "string",
+                "format": "date-time",
+            },
+            "archivedAt": {
+                "type": [
+                    "string",
+                    "null",
+                ],
+                "format": "date-time",
+            },
+            "organizationId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "currentUserRole": {
+                "$ref": "../collaborators/project-role.schema.json",
+            },
+        },
+        "allOf": [
+            {
+                "if": {
+                    "properties": {
+                        "status": {
+                            "const": "active",
+                        },
+                    },
+                },
+                "then": {
+                    "properties": {
+                        "archivedAt": {
+                            "type": "null",
+                        },
+                    },
+                },
+            },
+            {
+                "if": {
+                    "properties": {
+                        "status": {
+                            "const": "archived",
+                        },
+                    },
+                },
+                "then": {
+                    "properties": {
+                        "archivedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                        },
+                    },
+                },
+            },
+        ],
+    },
+    "https://contracts.trileo.dev/v1/projects/organization-projects-page-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/projects/organization-projects-page-response.schema.json",
+        "title": "OrganizationProjectsPageResponse",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "items",
+        ],
+        "properties": {
+            "items": {
+                "type": "array",
+                "maxItems": 50,
+                "items": {
+                    "$ref": "organization-project-response.schema.json",
+                },
+            },
+            "nextCursor": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512,
             },
         },
     },
@@ -1400,9 +2154,17 @@ SCHEMA_BY_TITLE: Final[dict[str, str]] = {
     "VerifyEmailRequest": "https://contracts.trileo.dev/v1/auth/verify-email-request.schema.json",
     "VerifyPasswordResetCodeCommand": "https://contracts.trileo.dev/v1/auth/verify-password-reset-code-command.schema.json",
     "VerifyPasswordResetCodeRequest": "https://contracts.trileo.dev/v1/auth/verify-password-reset-code-request.schema.json",
+    "AddProjectCollaboratorCommand": "https://contracts.trileo.dev/v1/collaborators/add-project-collaborator-command.schema.json",
+    "ListProjectCollaboratorsQuery": "https://contracts.trileo.dev/v1/collaborators/list-project-collaborators-query.schema.json",
+    "ProjectCollaboratorResponse": "https://contracts.trileo.dev/v1/collaborators/project-collaborator-response.schema.json",
+    "ProjectCollaboratorsPageResponse": "https://contracts.trileo.dev/v1/collaborators/project-collaborators-page-response.schema.json",
+    "ProjectRole": "https://contracts.trileo.dev/v1/collaborators/project-role.schema.json",
+    "RemoveProjectCollaboratorCommand": "https://contracts.trileo.dev/v1/collaborators/remove-project-collaborator-command.schema.json",
+    "UpdateProjectCollaboratorCommand": "https://contracts.trileo.dev/v1/collaborators/update-project-collaborator-command.schema.json",
     "ActorContext": "https://contracts.trileo.dev/v1/common/actor-context.schema.json",
     "AnonymousServiceRequest": "https://contracts.trileo.dev/v1/common/anonymous-service-request.schema.json",
     "FieldError": "https://contracts.trileo.dev/v1/common/field-error.schema.json",
+    "OrganizationServiceRequest": "https://contracts.trileo.dev/v1/common/organization-service-request.schema.json",
     "PageRequest": "https://contracts.trileo.dev/v1/common/pagination.schema.json",
     "PlatformRole": "https://contracts.trileo.dev/v1/common/platform-role.schema.json",
     "ServiceError": "https://contracts.trileo.dev/v1/common/service-error.schema.json",
@@ -1410,10 +2172,32 @@ SCHEMA_BY_TITLE: Final[dict[str, str]] = {
     "ServiceResponse": "https://contracts.trileo.dev/v1/common/service-response.schema.json",
     "HealthCheckQuery": "https://contracts.trileo.dev/v1/health/health-check-query.schema.json",
     "HealthCheckResponse": "https://contracts.trileo.dev/v1/health/health-check-response.schema.json",
+    "AcceptOrganizationInvitationCommand": "https://contracts.trileo.dev/v1/organizations/accept-organization-invitation-command.schema.json",
+    "CreateOrganizationCommand": "https://contracts.trileo.dev/v1/organizations/create-organization-command.schema.json",
+    "CreateOrganizationInvitationCommand": "https://contracts.trileo.dev/v1/organizations/create-organization-invitation-command.schema.json",
+    "GetOrganizationMemberQuery": "https://contracts.trileo.dev/v1/organizations/get-organization-member-query.schema.json",
+    "GetOrganizationQuery": "https://contracts.trileo.dev/v1/organizations/get-organization-query.schema.json",
+    "ListOrganizationInvitationsQuery": "https://contracts.trileo.dev/v1/organizations/list-organization-invitations-query.schema.json",
+    "ListOrganizationMembersQuery": "https://contracts.trileo.dev/v1/organizations/list-organization-members-query.schema.json",
+    "ListOrganizationsQuery": "https://contracts.trileo.dev/v1/organizations/list-organizations-query.schema.json",
+    "OrganizationInvitationResponse": "https://contracts.trileo.dev/v1/organizations/organization-invitation-response.schema.json",
+    "OrganizationInvitationsPageResponse": "https://contracts.trileo.dev/v1/organizations/organization-invitations-page-response.schema.json",
+    "OrganizationMemberResponse": "https://contracts.trileo.dev/v1/organizations/organization-member-response.schema.json",
+    "OrganizationMembersPageResponse": "https://contracts.trileo.dev/v1/organizations/organization-members-page-response.schema.json",
+    "OrganizationName": "https://contracts.trileo.dev/v1/organizations/organization-name.schema.json",
+    "OrganizationResponse": "https://contracts.trileo.dev/v1/organizations/organization-response.schema.json",
+    "OrganizationRole": "https://contracts.trileo.dev/v1/organizations/organization-role.schema.json",
+    "OrganizationsPageResponse": "https://contracts.trileo.dev/v1/organizations/organizations-page-response.schema.json",
+    "RemoveOrganizationMemberCommand": "https://contracts.trileo.dev/v1/organizations/remove-organization-member-command.schema.json",
+    "RevokeOrganizationInvitationCommand": "https://contracts.trileo.dev/v1/organizations/revoke-organization-invitation-command.schema.json",
+    "UpdateOrganizationCommand": "https://contracts.trileo.dev/v1/organizations/update-organization-command.schema.json",
+    "UpdateOrganizationMemberCommand": "https://contracts.trileo.dev/v1/organizations/update-organization-member-command.schema.json",
     "ArchiveProjectCommand": "https://contracts.trileo.dev/v1/projects/archive-project-command.schema.json",
     "CreateProjectCommand": "https://contracts.trileo.dev/v1/projects/create-project-command.schema.json",
     "GetProjectQuery": "https://contracts.trileo.dev/v1/projects/get-project-query.schema.json",
     "ListProjectsQuery": "https://contracts.trileo.dev/v1/projects/list-projects-query.schema.json",
+    "OrganizationProjectResponse": "https://contracts.trileo.dev/v1/projects/organization-project-response.schema.json",
+    "OrganizationProjectsPageResponse": "https://contracts.trileo.dev/v1/projects/organization-projects-page-response.schema.json",
     "ProjectName": "https://contracts.trileo.dev/v1/projects/project-name.schema.json",
     "ProjectResponse": "https://contracts.trileo.dev/v1/projects/project-response.schema.json",
     "ProjectsPageResponse": "https://contracts.trileo.dev/v1/projects/projects-page-response.schema.json",

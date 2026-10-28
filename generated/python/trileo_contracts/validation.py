@@ -408,6 +408,76 @@ def is_verify_password_reset_code_request(value: Any) -> bool:
     return _is_valid("https://contracts.trileo.dev/v1/auth/verify-password-reset-code-request.schema.json", value)
 
 
+def validate_add_project_collaborator_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid AddProjectCollaboratorCommand."""
+    _validate("https://contracts.trileo.dev/v1/collaborators/add-project-collaborator-command.schema.json", value)
+
+
+def is_add_project_collaborator_command(value: Any) -> bool:
+    """True when *value* is a valid AddProjectCollaboratorCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/collaborators/add-project-collaborator-command.schema.json", value)
+
+
+def validate_list_project_collaborators_query(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid ListProjectCollaboratorsQuery."""
+    _validate("https://contracts.trileo.dev/v1/collaborators/list-project-collaborators-query.schema.json", value)
+
+
+def is_list_project_collaborators_query(value: Any) -> bool:
+    """True when *value* is a valid ListProjectCollaboratorsQuery."""
+    return _is_valid("https://contracts.trileo.dev/v1/collaborators/list-project-collaborators-query.schema.json", value)
+
+
+def validate_project_collaborator_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid ProjectCollaboratorResponse."""
+    _validate("https://contracts.trileo.dev/v1/collaborators/project-collaborator-response.schema.json", value)
+
+
+def is_project_collaborator_response(value: Any) -> bool:
+    """True when *value* is a valid ProjectCollaboratorResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/collaborators/project-collaborator-response.schema.json", value)
+
+
+def validate_project_collaborators_page_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid ProjectCollaboratorsPageResponse."""
+    _validate("https://contracts.trileo.dev/v1/collaborators/project-collaborators-page-response.schema.json", value)
+
+
+def is_project_collaborators_page_response(value: Any) -> bool:
+    """True when *value* is a valid ProjectCollaboratorsPageResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/collaborators/project-collaborators-page-response.schema.json", value)
+
+
+def validate_project_role(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid ProjectRole."""
+    _validate("https://contracts.trileo.dev/v1/collaborators/project-role.schema.json", value)
+
+
+def is_project_role(value: Any) -> bool:
+    """True when *value* is a valid ProjectRole."""
+    return _is_valid("https://contracts.trileo.dev/v1/collaborators/project-role.schema.json", value)
+
+
+def validate_remove_project_collaborator_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid RemoveProjectCollaboratorCommand."""
+    _validate("https://contracts.trileo.dev/v1/collaborators/remove-project-collaborator-command.schema.json", value)
+
+
+def is_remove_project_collaborator_command(value: Any) -> bool:
+    """True when *value* is a valid RemoveProjectCollaboratorCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/collaborators/remove-project-collaborator-command.schema.json", value)
+
+
+def validate_update_project_collaborator_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid UpdateProjectCollaboratorCommand."""
+    _validate("https://contracts.trileo.dev/v1/collaborators/update-project-collaborator-command.schema.json", value)
+
+
+def is_update_project_collaborator_command(value: Any) -> bool:
+    """True when *value* is a valid UpdateProjectCollaboratorCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/collaborators/update-project-collaborator-command.schema.json", value)
+
+
 def validate_actor_context(value: Any) -> None:
     """Raise ContractViolation unless *value* is a valid ActorContext."""
     _validate("https://contracts.trileo.dev/v1/common/actor-context.schema.json", value)
@@ -436,6 +506,16 @@ def validate_field_error(value: Any) -> None:
 def is_field_error(value: Any) -> bool:
     """True when *value* is a valid FieldError."""
     return _is_valid("https://contracts.trileo.dev/v1/common/field-error.schema.json", value)
+
+
+def validate_organization_service_request(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid OrganizationServiceRequest."""
+    _validate("https://contracts.trileo.dev/v1/common/organization-service-request.schema.json", value)
+
+
+def is_organization_service_request(value: Any) -> bool:
+    """True when *value* is a valid OrganizationServiceRequest."""
+    return _is_valid("https://contracts.trileo.dev/v1/common/organization-service-request.schema.json", value)
 
 
 def validate_page_request(value: Any) -> None:
@@ -508,6 +588,206 @@ def is_health_check_response(value: Any) -> bool:
     return _is_valid("https://contracts.trileo.dev/v1/health/health-check-response.schema.json", value)
 
 
+def validate_accept_organization_invitation_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid AcceptOrganizationInvitationCommand."""
+    _validate("https://contracts.trileo.dev/v1/organizations/accept-organization-invitation-command.schema.json", value)
+
+
+def is_accept_organization_invitation_command(value: Any) -> bool:
+    """True when *value* is a valid AcceptOrganizationInvitationCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/accept-organization-invitation-command.schema.json", value)
+
+
+def validate_create_organization_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid CreateOrganizationCommand."""
+    _validate("https://contracts.trileo.dev/v1/organizations/create-organization-command.schema.json", value)
+
+
+def is_create_organization_command(value: Any) -> bool:
+    """True when *value* is a valid CreateOrganizationCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/create-organization-command.schema.json", value)
+
+
+def validate_create_organization_invitation_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid CreateOrganizationInvitationCommand."""
+    _validate("https://contracts.trileo.dev/v1/organizations/create-organization-invitation-command.schema.json", value)
+
+
+def is_create_organization_invitation_command(value: Any) -> bool:
+    """True when *value* is a valid CreateOrganizationInvitationCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/create-organization-invitation-command.schema.json", value)
+
+
+def validate_get_organization_member_query(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid GetOrganizationMemberQuery."""
+    _validate("https://contracts.trileo.dev/v1/organizations/get-organization-member-query.schema.json", value)
+
+
+def is_get_organization_member_query(value: Any) -> bool:
+    """True when *value* is a valid GetOrganizationMemberQuery."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/get-organization-member-query.schema.json", value)
+
+
+def validate_get_organization_query(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid GetOrganizationQuery."""
+    _validate("https://contracts.trileo.dev/v1/organizations/get-organization-query.schema.json", value)
+
+
+def is_get_organization_query(value: Any) -> bool:
+    """True when *value* is a valid GetOrganizationQuery."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/get-organization-query.schema.json", value)
+
+
+def validate_list_organization_invitations_query(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid ListOrganizationInvitationsQuery."""
+    _validate("https://contracts.trileo.dev/v1/organizations/list-organization-invitations-query.schema.json", value)
+
+
+def is_list_organization_invitations_query(value: Any) -> bool:
+    """True when *value* is a valid ListOrganizationInvitationsQuery."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/list-organization-invitations-query.schema.json", value)
+
+
+def validate_list_organization_members_query(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid ListOrganizationMembersQuery."""
+    _validate("https://contracts.trileo.dev/v1/organizations/list-organization-members-query.schema.json", value)
+
+
+def is_list_organization_members_query(value: Any) -> bool:
+    """True when *value* is a valid ListOrganizationMembersQuery."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/list-organization-members-query.schema.json", value)
+
+
+def validate_list_organizations_query(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid ListOrganizationsQuery."""
+    _validate("https://contracts.trileo.dev/v1/organizations/list-organizations-query.schema.json", value)
+
+
+def is_list_organizations_query(value: Any) -> bool:
+    """True when *value* is a valid ListOrganizationsQuery."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/list-organizations-query.schema.json", value)
+
+
+def validate_organization_invitation_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid OrganizationInvitationResponse."""
+    _validate("https://contracts.trileo.dev/v1/organizations/organization-invitation-response.schema.json", value)
+
+
+def is_organization_invitation_response(value: Any) -> bool:
+    """True when *value* is a valid OrganizationInvitationResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/organization-invitation-response.schema.json", value)
+
+
+def validate_organization_invitations_page_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid OrganizationInvitationsPageResponse."""
+    _validate("https://contracts.trileo.dev/v1/organizations/organization-invitations-page-response.schema.json", value)
+
+
+def is_organization_invitations_page_response(value: Any) -> bool:
+    """True when *value* is a valid OrganizationInvitationsPageResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/organization-invitations-page-response.schema.json", value)
+
+
+def validate_organization_member_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid OrganizationMemberResponse."""
+    _validate("https://contracts.trileo.dev/v1/organizations/organization-member-response.schema.json", value)
+
+
+def is_organization_member_response(value: Any) -> bool:
+    """True when *value* is a valid OrganizationMemberResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/organization-member-response.schema.json", value)
+
+
+def validate_organization_members_page_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid OrganizationMembersPageResponse."""
+    _validate("https://contracts.trileo.dev/v1/organizations/organization-members-page-response.schema.json", value)
+
+
+def is_organization_members_page_response(value: Any) -> bool:
+    """True when *value* is a valid OrganizationMembersPageResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/organization-members-page-response.schema.json", value)
+
+
+def validate_organization_name(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid OrganizationName."""
+    _validate("https://contracts.trileo.dev/v1/organizations/organization-name.schema.json", value)
+
+
+def is_organization_name(value: Any) -> bool:
+    """True when *value* is a valid OrganizationName."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/organization-name.schema.json", value)
+
+
+def validate_organization_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid OrganizationResponse."""
+    _validate("https://contracts.trileo.dev/v1/organizations/organization-response.schema.json", value)
+
+
+def is_organization_response(value: Any) -> bool:
+    """True when *value* is a valid OrganizationResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/organization-response.schema.json", value)
+
+
+def validate_organization_role(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid OrganizationRole."""
+    _validate("https://contracts.trileo.dev/v1/organizations/organization-role.schema.json", value)
+
+
+def is_organization_role(value: Any) -> bool:
+    """True when *value* is a valid OrganizationRole."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/organization-role.schema.json", value)
+
+
+def validate_organizations_page_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid OrganizationsPageResponse."""
+    _validate("https://contracts.trileo.dev/v1/organizations/organizations-page-response.schema.json", value)
+
+
+def is_organizations_page_response(value: Any) -> bool:
+    """True when *value* is a valid OrganizationsPageResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/organizations-page-response.schema.json", value)
+
+
+def validate_remove_organization_member_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid RemoveOrganizationMemberCommand."""
+    _validate("https://contracts.trileo.dev/v1/organizations/remove-organization-member-command.schema.json", value)
+
+
+def is_remove_organization_member_command(value: Any) -> bool:
+    """True when *value* is a valid RemoveOrganizationMemberCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/remove-organization-member-command.schema.json", value)
+
+
+def validate_revoke_organization_invitation_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid RevokeOrganizationInvitationCommand."""
+    _validate("https://contracts.trileo.dev/v1/organizations/revoke-organization-invitation-command.schema.json", value)
+
+
+def is_revoke_organization_invitation_command(value: Any) -> bool:
+    """True when *value* is a valid RevokeOrganizationInvitationCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/revoke-organization-invitation-command.schema.json", value)
+
+
+def validate_update_organization_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid UpdateOrganizationCommand."""
+    _validate("https://contracts.trileo.dev/v1/organizations/update-organization-command.schema.json", value)
+
+
+def is_update_organization_command(value: Any) -> bool:
+    """True when *value* is a valid UpdateOrganizationCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/update-organization-command.schema.json", value)
+
+
+def validate_update_organization_member_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid UpdateOrganizationMemberCommand."""
+    _validate("https://contracts.trileo.dev/v1/organizations/update-organization-member-command.schema.json", value)
+
+
+def is_update_organization_member_command(value: Any) -> bool:
+    """True when *value* is a valid UpdateOrganizationMemberCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/organizations/update-organization-member-command.schema.json", value)
+
+
 def validate_archive_project_command(value: Any) -> None:
     """Raise ContractViolation unless *value* is a valid ArchiveProjectCommand."""
     _validate("https://contracts.trileo.dev/v1/projects/archive-project-command.schema.json", value)
@@ -546,6 +826,26 @@ def validate_list_projects_query(value: Any) -> None:
 def is_list_projects_query(value: Any) -> bool:
     """True when *value* is a valid ListProjectsQuery."""
     return _is_valid("https://contracts.trileo.dev/v1/projects/list-projects-query.schema.json", value)
+
+
+def validate_organization_project_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid OrganizationProjectResponse."""
+    _validate("https://contracts.trileo.dev/v1/projects/organization-project-response.schema.json", value)
+
+
+def is_organization_project_response(value: Any) -> bool:
+    """True when *value* is a valid OrganizationProjectResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/projects/organization-project-response.schema.json", value)
+
+
+def validate_organization_projects_page_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid OrganizationProjectsPageResponse."""
+    _validate("https://contracts.trileo.dev/v1/projects/organization-projects-page-response.schema.json", value)
+
+
+def is_organization_projects_page_response(value: Any) -> bool:
+    """True when *value* is a valid OrganizationProjectsPageResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/projects/organization-projects-page-response.schema.json", value)
 
 
 def validate_project_name(value: Any) -> None:

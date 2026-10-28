@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/organizations/revoke-organization-invitation-command.schema.json",
+  "title": "RevokeOrganizationInvitationCommand",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "invitationId"
+  ],
+  "properties": {
+    "invitationId": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

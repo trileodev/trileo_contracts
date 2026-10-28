@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/organizations/organization-members-page-response.schema.json",
+  "title": "OrganizationMembersPageResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "items"
+  ],
+  "properties": {
+    "items": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "$ref": "organization-member-response.schema.json"
+      }
+    },
+    "nextCursor": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

@@ -10,7 +10,7 @@ edit to an existing one.
 
 from typing import Final, Literal
 
-SubjectName = Literal["health.check.v1", "auth.register.v1", "auth.login.v1", "auth.refresh.v1", "auth.logout.v1", "auth.verify-email.v1", "auth.verify-email.resend.v1", "auth.password-reset.request.v1", "auth.password-reset.verify-code.v1", "auth.password-reset.complete.v1", "auth.password.change.v1", "auth.password.set.v1", "auth.password.set.request.v1", "auth.oauth.google.complete.v1", "auth.oauth.github.complete.v1", "auth.identity-link.complete.v1", "auth.login-methods.list.v1", "auth.identity.disconnect.v1", "users.get-current.v1", "sessions.get-current.v1", "sessions.list.v1", "sessions.revoke.v1", "sessions.revoke-all.v1", "projects.create.v1", "projects.list.v1", "projects.get.v1", "projects.update.v1", "projects.archive.v1", "projects.restore.v1"]
+SubjectName = Literal["health.check.v1", "auth.register.v1", "auth.login.v1", "auth.refresh.v1", "auth.logout.v1", "auth.verify-email.v1", "auth.verify-email.resend.v1", "auth.password-reset.request.v1", "auth.password-reset.verify-code.v1", "auth.password-reset.complete.v1", "auth.password.change.v1", "auth.password.set.v1", "auth.password.set.request.v1", "auth.oauth.google.complete.v1", "auth.oauth.github.complete.v1", "auth.identity-link.complete.v1", "auth.login-methods.list.v1", "auth.identity.disconnect.v1", "users.get-current.v1", "sessions.get-current.v1", "sessions.list.v1", "sessions.revoke.v1", "sessions.revoke-all.v1", "projects.create.v1", "projects.list.v1", "projects.get.v1", "projects.update.v1", "projects.archive.v1", "projects.restore.v1", "organizations.create.v1", "organizations.list.v1", "organizations.get.v1", "organizations.get-personal.v1", "organizations.update.v1", "organizations.members.list.v1", "organizations.members.get.v1", "organizations.members.update.v1", "organizations.members.remove.v1", "organizations.invitations.create.v1", "organizations.invitations.list.v1", "organizations.invitations.list-mine.v1", "organizations.invitations.accept.v1", "organizations.invitations.revoke.v1", "collaborators.list.v1", "collaborators.add.v1", "collaborators.update.v1", "collaborators.remove.v1", "projects.create.v2", "projects.list.v2", "projects.get.v2", "projects.update.v2", "projects.archive.v2", "projects.restore.v2"]
 
 SUBJECTS: Final[dict[str, str]] = {
     "healthCheck": "health.check.v1",
@@ -42,6 +42,30 @@ SUBJECTS: Final[dict[str, str]] = {
     "projectsUpdate": "projects.update.v1",
     "projectsArchive": "projects.archive.v1",
     "projectsRestore": "projects.restore.v1",
+    "organizationsCreate": "organizations.create.v1",
+    "organizationsList": "organizations.list.v1",
+    "organizationsGet": "organizations.get.v1",
+    "organizationsGetPersonal": "organizations.get-personal.v1",
+    "organizationsUpdate": "organizations.update.v1",
+    "organizationMembersList": "organizations.members.list.v1",
+    "organizationMembersGet": "organizations.members.get.v1",
+    "organizationMembersUpdate": "organizations.members.update.v1",
+    "organizationMembersRemove": "organizations.members.remove.v1",
+    "organizationInvitationsCreate": "organizations.invitations.create.v1",
+    "organizationInvitationsList": "organizations.invitations.list.v1",
+    "organizationInvitationsListMine": "organizations.invitations.list-mine.v1",
+    "organizationInvitationsAccept": "organizations.invitations.accept.v1",
+    "organizationInvitationsRevoke": "organizations.invitations.revoke.v1",
+    "projectCollaboratorsList": "collaborators.list.v1",
+    "projectCollaboratorsAdd": "collaborators.add.v1",
+    "projectCollaboratorsUpdate": "collaborators.update.v1",
+    "projectCollaboratorsRemove": "collaborators.remove.v1",
+    "organizationProjectsCreate": "projects.create.v2",
+    "organizationProjectsList": "projects.list.v2",
+    "organizationProjectsGet": "projects.get.v2",
+    "organizationProjectsUpdate": "projects.update.v2",
+    "organizationProjectsArchive": "projects.archive.v2",
+    "organizationProjectsRestore": "projects.restore.v2",
 }
 
 HEALTH_CHECK: Final = "health.check.v1"
@@ -73,3 +97,27 @@ PROJECTS_GET: Final = "projects.get.v1"
 PROJECTS_UPDATE: Final = "projects.update.v1"
 PROJECTS_ARCHIVE: Final = "projects.archive.v1"
 PROJECTS_RESTORE: Final = "projects.restore.v1"
+ORGANIZATIONS_CREATE: Final = "organizations.create.v1"
+ORGANIZATIONS_LIST: Final = "organizations.list.v1"
+ORGANIZATIONS_GET: Final = "organizations.get.v1"
+ORGANIZATIONS_GET_PERSONAL: Final = "organizations.get-personal.v1"
+ORGANIZATIONS_UPDATE: Final = "organizations.update.v1"
+ORGANIZATION_MEMBERS_LIST: Final = "organizations.members.list.v1"
+ORGANIZATION_MEMBERS_GET: Final = "organizations.members.get.v1"
+ORGANIZATION_MEMBERS_UPDATE: Final = "organizations.members.update.v1"
+ORGANIZATION_MEMBERS_REMOVE: Final = "organizations.members.remove.v1"
+ORGANIZATION_INVITATIONS_CREATE: Final = "organizations.invitations.create.v1"
+ORGANIZATION_INVITATIONS_LIST: Final = "organizations.invitations.list.v1"
+ORGANIZATION_INVITATIONS_LIST_MINE: Final = "organizations.invitations.list-mine.v1"
+ORGANIZATION_INVITATIONS_ACCEPT: Final = "organizations.invitations.accept.v1"
+ORGANIZATION_INVITATIONS_REVOKE: Final = "organizations.invitations.revoke.v1"
+PROJECT_COLLABORATORS_LIST: Final = "collaborators.list.v1"
+PROJECT_COLLABORATORS_ADD: Final = "collaborators.add.v1"
+PROJECT_COLLABORATORS_UPDATE: Final = "collaborators.update.v1"
+PROJECT_COLLABORATORS_REMOVE: Final = "collaborators.remove.v1"
+ORGANIZATION_PROJECTS_CREATE: Final = "projects.create.v2"
+ORGANIZATION_PROJECTS_LIST: Final = "projects.list.v2"
+ORGANIZATION_PROJECTS_GET: Final = "projects.get.v2"
+ORGANIZATION_PROJECTS_UPDATE: Final = "projects.update.v2"
+ORGANIZATION_PROJECTS_ARCHIVE: Final = "projects.archive.v2"
+ORGANIZATION_PROJECTS_RESTORE: Final = "projects.restore.v2"
