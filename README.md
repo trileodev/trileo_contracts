@@ -27,6 +27,6 @@ an invitation ID grants no authority. Requested member/collaborator roles are po
 never trusted actor roles.
 
 Run `uv sync --frozen --extra dev` once, then `npm run check:generated`, `npm run verify`
-and `npm run build`. CI runs those checks with Node 24 and Python 3.14. The inherited npm
-lockfile policy is unchanged; npm dependency resolution is not yet reproducibly pinned.
+and `npm run build`. CI runs those checks with Node 24 and Python 3.14. npm dependencies
+remain pinned by the tracked package-lock.json.
 
