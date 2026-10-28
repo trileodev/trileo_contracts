@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/collaborators/remove-project-collaborator-command.schema.json",
+  "title": "RemoveProjectCollaboratorCommand",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "projectId",
+    "userId"
+  ],
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "userId": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

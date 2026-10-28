@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/organizations/get-organization-query.schema.json",
+  "title": "GetOrganizationQuery",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [],
+  "properties": {}
+}
