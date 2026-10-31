@@ -2,7 +2,6 @@ node_modules/
 dist/
 .generated-check/
 
-package-lock.json
 
 # Python
 .venv/

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/projects/project-response.schema.json",
+  "title": "ProjectResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "status", "framework", "createdAt", "updatedAt", "archivedAt"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "name": { "$ref": "project-name.schema.json" },
+    "status": { "enum": ["active", "archived"] },
+    "framework": { "enum": ["mern", null] },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "archivedAt": { "type": ["string", "null"], "format": "date-time" }
+  },
+  "allOf": [
+    { "if": { "properties": { "status": { "const": "active" } } }, "then": { "properties": { "archivedAt": { "type": "null" } } } },
+    { "if": { "properties": { "status": { "const": "archived" } } }, "then": { "properties": { "archivedAt": { "type": "string", "format": "date-time" } } } }
+  ]
+}

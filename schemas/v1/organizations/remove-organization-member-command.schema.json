@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/organizations/remove-organization-member-command.schema.json",
+  "title": "RemoveOrganizationMemberCommand",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "userId"
+  ],
+  "properties": {
+    "userId": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

@@ -6,7 +6,9 @@
     "authRequestPasswordReset": "auth.password-reset.request.v1", "authCompletePasswordReset": "auth.password-reset.complete.v1",
     "authChangePassword": "auth.password.change.v1", "authSetPassword": "auth.password.set.v1",
     "usersGetCurrent": "users.get-current.v1", "sessionsGetCurrent": "sessions.get-current.v1", "sessionsList": "sessions.list.v1",
-    "sessionsRevoke": "sessions.revoke.v1", "sessionsRevokeAll": "sessions.revoke-all.v1"
+    "sessionsRevoke": "sessions.revoke.v1", "sessionsRevokeAll": "sessions.revoke-all.v1",
+    "projectsCreate": "projects.create.v1", "projectsList": "projects.list.v1", "projectsGet": "projects.get.v1",
+    "projectsUpdate": "projects.update.v1", "projectsArchive": "projects.archive.v1", "projectsRestore": "projects.restore.v1"
   },
   "requiredFields": {
     "schemas/v1/common/actor-context.schema.json": ["userId", "sessionId", "roles"],
@@ -16,6 +18,13 @@
     "schemas/v1/auth/register-request.schema.json": ["firstName", "email", "password", "termsVersion"],
     "schemas/v1/auth/login-request.schema.json": ["email", "password"],
     "schemas/v1/auth/verify-email-request.schema.json": ["code"],
-    "schemas/v1/auth/auth-session-response.schema.json": ["user", "session", "emailVerificationStatus", "loginMethods", "accessExpiresAt"]
+    "schemas/v1/auth/auth-session-response.schema.json": ["user", "session", "emailVerificationStatus", "loginMethods", "accessExpiresAt"],
+    "schemas/v1/projects/create-project-command.schema.json": ["name"],
+    "schemas/v1/projects/get-project-query.schema.json": ["projectId"],
+    "schemas/v1/projects/update-project-command.schema.json": ["projectId", "name"],
+    "schemas/v1/projects/archive-project-command.schema.json": ["projectId"],
+    "schemas/v1/projects/restore-project-command.schema.json": ["projectId"],
+    "schemas/v1/projects/project-response.schema.json": ["id", "name", "status", "framework", "createdAt", "updatedAt", "archivedAt"],
+    "schemas/v1/projects/projects-page-response.schema.json": ["items"]
   }
 }

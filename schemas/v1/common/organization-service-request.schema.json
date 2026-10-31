@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/common/organization-service-request.schema.json",
+  "title": "OrganizationServiceRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "correlationId",
+    "actor",
+    "organizationId",
+    "payload"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "correlationId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "causationId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "idempotencyKey": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 128
+    },
+    "actor": {
+      "$ref": "actor-context.schema.json"
+    },
+    "organizationId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "organizationRole": {
+      "description": "Trusted membership fact. Set only by the Gateway, copied from Main's organizations.get.v1 reply for this organizationId. Main ignores it. The AI service and every other publisher must never set it. Project denies when it is absent.",
+      "$ref": "../organizations/organization-role.schema.json"
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+[
+  {"schema":"https://contracts.trileo.dev/v1/projects/project-name.schema.json","data":"Bank website"},
+  {"schema":"https://contracts.trileo.dev/v1/projects/create-project-command.schema.json","data":{"name":"Bank website"}},
+  {"schema":"https://contracts.trileo.dev/v1/projects/list-projects-query.schema.json","data":{"limit":20}},
+  {"schema":"https://contracts.trileo.dev/v1/projects/list-projects-query.schema.json","data":{"status":"archived","limit":20}},
+  {"schema":"https://contracts.trileo.dev/v1/projects/restore-project-command.schema.json","data":{"projectId":"33333333-3333-4333-8333-333333333333"}},
+  {"schema":"https://contracts.trileo.dev/v1/projects/get-project-query.schema.json","data":{"projectId":"33333333-3333-4333-8333-333333333333"}},
+  {"schema":"https://contracts.trileo.dev/v1/projects/update-project-command.schema.json","data":{"projectId":"33333333-3333-4333-8333-333333333333","name":"Banking portal"}},
+  {"schema":"https://contracts.trileo.dev/v1/projects/archive-project-command.schema.json","data":{"projectId":"33333333-3333-4333-8333-333333333333"}},
+  {"schema":"https://contracts.trileo.dev/v1/projects/project-response.schema.json","data":{"id":"33333333-3333-4333-8333-333333333333","name":"Bank website","status":"active","framework":null,"createdAt":"2026-09-30T00:00:00.000Z","updatedAt":"2026-09-30T00:00:00.000Z","archivedAt":null}},
+  {"schema":"https://contracts.trileo.dev/v1/projects/project-response.schema.json","data":{"id":"33333333-3333-4333-8333-333333333333","name":"Bank website","status":"archived","framework":null,"createdAt":"2026-09-30T00:00:00.000Z","updatedAt":"2026-09-30T01:00:00.000Z","archivedAt":"2026-09-30T01:00:00.000Z"}},
+  {"schema":"https://contracts.trileo.dev/v1/projects/projects-page-response.schema.json","data":{"items":[]}}
+]

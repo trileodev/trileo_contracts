@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/collaborators/update-project-collaborator-command.schema.json",
+  "title": "UpdateProjectCollaboratorCommand",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "projectId",
+    "userId",
+    "role"
+  ],
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "userId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "role": {
+      "$ref": "project-role.schema.json"
+    }
+  }
+}

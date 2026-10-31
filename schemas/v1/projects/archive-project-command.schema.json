@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/projects/archive-project-command.schema.json",
+  "title": "ArchiveProjectCommand",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["projectId"],
+  "properties": { "projectId": { "type": "string", "format": "uuid" } }
+}

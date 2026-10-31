@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/collaborators/project-role.schema.json",
+  "title": "ProjectRole",
+  "type": "string",
+  "enum": [
+    "owner",
+    "editor",
+    "viewer"
+  ]
+}

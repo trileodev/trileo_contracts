@@ -1,0 +1,232 @@
+[
+  {
+    "schema": "https://contracts.trileo.dev/v1/common/organization-service-request.schema.json",
+    "data": {
+      "version": 1,
+      "correlationId": "44444444-4444-4444-8444-444444444444",
+      "actor": {
+        "userId": "11111111-1111-4111-8111-111111111111",
+        "sessionId": "33333333-3333-4333-8333-333333333333",
+        "roles": [
+          "user"
+        ]
+      },
+      "payload": {}
+    },
+    "reason": "organization scope is required"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/common/organization-service-request.schema.json",
+    "data": {
+      "version": 1,
+      "correlationId": "44444444-4444-4444-8444-444444444444",
+      "organizationId": "other-org",
+      "actor": {
+        "userId": "11111111-1111-4111-8111-111111111111",
+        "sessionId": "33333333-3333-4333-8333-333333333333",
+        "roles": [
+          "user"
+        ]
+      },
+      "payload": {}
+    },
+    "reason": "organization ID must be a UUID"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/common/organization-service-request.schema.json",
+    "data": {
+      "version": 1,
+      "correlationId": "44444444-4444-4444-8444-444444444444",
+      "organizationId": "22222222-2222-4222-8222-222222222222",
+      "actor": {
+        "userId": "11111111-1111-4111-8111-111111111111",
+        "sessionId": "33333333-3333-4333-8333-333333333333",
+        "roles": [
+          "user"
+        ],
+        "organizationRole": "org_admin"
+      },
+      "payload": {}
+    },
+    "reason": "callers cannot manufacture organization roles"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/common/organization-service-request.schema.json",
+    "data": {
+      "version": 1,
+      "correlationId": "44444444-4444-4444-8444-444444444444",
+      "organizationId": "22222222-2222-4222-8222-222222222222",
+      "organizationRole": "owner",
+      "actor": {
+        "userId": "11111111-1111-4111-8111-111111111111",
+        "sessionId": "33333333-3333-4333-8333-333333333333",
+        "roles": [
+          "user"
+        ]
+      },
+      "payload": {}
+    },
+    "reason": "project roles are not organization roles"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/common/organization-service-request.schema.json",
+    "data": {
+      "version": 1,
+      "correlationId": "44444444-4444-4444-8444-444444444444",
+      "organizationId": "22222222-2222-4222-8222-222222222222",
+      "organizationRole": "ADMIN",
+      "actor": {
+        "userId": "11111111-1111-4111-8111-111111111111",
+        "sessionId": "33333333-3333-4333-8333-333333333333",
+        "roles": [
+          "user"
+        ]
+      },
+      "payload": {}
+    },
+    "reason": "organization role values are case-sensitive"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/common/organization-service-request.schema.json",
+    "data": {
+      "version": 1,
+      "correlationId": "44444444-4444-4444-8444-444444444444",
+      "organizationId": "22222222-2222-4222-8222-222222222222",
+      "organizationRole": "",
+      "actor": {
+        "userId": "11111111-1111-4111-8111-111111111111",
+        "sessionId": "33333333-3333-4333-8333-333333333333",
+        "roles": [
+          "user"
+        ]
+      },
+      "payload": {}
+    },
+    "reason": "organization role cannot be empty"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/common/organization-service-request.schema.json",
+    "data": {
+      "version": 1,
+      "correlationId": "44444444-4444-4444-8444-444444444444",
+      "organizationId": "22222222-2222-4222-8222-222222222222",
+      "organizationRole": null,
+      "actor": {
+        "userId": "11111111-1111-4111-8111-111111111111",
+        "sessionId": "33333333-3333-4333-8333-333333333333",
+        "roles": [
+          "user"
+        ]
+      },
+      "payload": {}
+    },
+    "reason": "organization role cannot be null"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/organizations/create-organization-command.schema.json",
+    "data": {
+      "name": "Studio",
+      "ownerId": "11111111-1111-4111-8111-111111111111"
+    },
+    "reason": "creator comes from actor"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/organizations/create-organization-command.schema.json",
+    "data": {
+      "name": " Studio"
+    },
+    "reason": "no leading whitespace"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/organizations/update-organization-member-command.schema.json",
+    "data": {
+      "userId": "11111111-1111-4111-8111-111111111111",
+      "role": "administrator"
+    },
+    "reason": "platform and organization roles are separate"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/organizations/create-organization-invitation-command.schema.json",
+    "data": {
+      "email": "invalid-email",
+      "role": "member"
+    },
+    "reason": "valid recipient email required"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/organizations/accept-organization-invitation-command.schema.json",
+    "data": {
+      "invitationId": "44444444-4444-4444-8444-444444444444",
+      "userId": "11111111-1111-4111-8111-111111111111"
+    },
+    "reason": "recipient comes from actor"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/organizations/organization-invitation-response.schema.json",
+    "data": {
+      "id": "44444444-4444-4444-8444-444444444444",
+      "organizationId": "22222222-2222-4222-8222-222222222222",
+      "organizationName": "Studio",
+      "email": "member@example.test",
+      "role": "member",
+      "status": "pending",
+      "expiresAt": "2026-11-04T00:00:00.000Z",
+      "createdAt": "2026-10-28T00:00:00.000Z",
+      "token": "raw-secret"
+    },
+    "reason": "descriptors never expose credentials"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/collaborators/add-project-collaborator-command.schema.json",
+    "data": {
+      "projectId": "33333333-3333-4333-8333-333333333333",
+      "userId": "11111111-1111-4111-8111-111111111111",
+      "role": "org_admin"
+    },
+    "reason": "organization roles are not project roles"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/projects/organization-project-response.schema.json",
+    "data": {
+      "id": "33333333-3333-4333-8333-333333333333",
+      "name": "Website",
+      "status": "active",
+      "framework": null,
+      "createdAt": "2026-10-28T00:00:00.000Z",
+      "updatedAt": "2026-10-28T00:00:00.000Z",
+      "archivedAt": null,
+      "currentUserRole": "owner"
+    },
+    "reason": "tenant response identifies organization"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/projects/organization-project-response.schema.json",
+    "data": {
+      "id": "33333333-3333-4333-8333-333333333333",
+      "name": "Website",
+      "status": "active",
+      "framework": null,
+      "createdAt": "2026-10-28T00:00:00.000Z",
+      "updatedAt": "2026-10-28T00:00:00.000Z",
+      "archivedAt": null,
+      "organizationId": "22222222-2222-4222-8222-222222222222",
+      "currentUserRole": "administrator"
+    },
+    "reason": "project role is bounded"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/organizations/list-organization-members-query.schema.json",
+    "data": {
+      "limit": 51
+    },
+    "reason": "pages are bounded"
+  },
+  {
+    "schema": "https://contracts.trileo.dev/v1/organizations/remove-organization-member-command.schema.json",
+    "data": {
+      "userId": "11111111-1111-4111-8111-111111111111",
+      "force": true
+    },
+    "reason": "last-administrator policy cannot be bypassed"
+  }
+]

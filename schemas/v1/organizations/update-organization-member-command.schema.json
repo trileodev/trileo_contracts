@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/organizations/update-organization-member-command.schema.json",
+  "title": "UpdateOrganizationMemberCommand",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "userId",
+    "role"
+  ],
+  "properties": {
+    "userId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "role": {
+      "$ref": "organization-role.schema.json"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/projects/update-project-command.schema.json",
+  "title": "UpdateProjectCommand",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["projectId", "name"],
+  "properties": {
+    "projectId": { "type": "string", "format": "uuid" },
+    "name": { "$ref": "project-name.schema.json" }
+  }
+}
