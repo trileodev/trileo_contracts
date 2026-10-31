@@ -963,6 +963,9 @@ SCHEMAS: Final[dict[str, dict[str, Any]]] = {
                 "type": "string",
                 "format": "uuid",
             },
+            "organizationRole": {
+                "$ref": "../organizations/organization-role.schema.json",
+            },
             "payload": {
                 "type": "object",
             },
