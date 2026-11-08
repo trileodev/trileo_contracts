@@ -56,5 +56,8 @@ export const SUBJECTS = {
   "organizationProjectsRestore": "projects.restore.v2",
   "uploadsGet": "uploads.get.v1",
   "uploadsList": "uploads.list.v1",
+  "uploadsCreate": "uploads.create.v1",
+  "uploadsPutPart": "uploads.parts.put.v1",
+  "uploadsComplete": "uploads.complete.v1",
 } as const;
 export type SubjectName = typeof SUBJECTS[keyof typeof SUBJECTS];

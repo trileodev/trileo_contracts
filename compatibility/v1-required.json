@@ -8,7 +8,8 @@
     "usersGetCurrent": "users.get-current.v1", "sessionsGetCurrent": "sessions.get-current.v1", "sessionsList": "sessions.list.v1",
     "sessionsRevoke": "sessions.revoke.v1", "sessionsRevokeAll": "sessions.revoke-all.v1",
     "projectsCreate": "projects.create.v1", "projectsList": "projects.list.v1", "projectsGet": "projects.get.v1",
-    "projectsUpdate": "projects.update.v1", "projectsArchive": "projects.archive.v1", "projectsRestore": "projects.restore.v1"
+    "projectsUpdate": "projects.update.v1", "projectsArchive": "projects.archive.v1", "projectsRestore": "projects.restore.v1",
+    "uploadsCreate": "uploads.create.v1", "uploadsPutPart": "uploads.parts.put.v1", "uploadsComplete": "uploads.complete.v1"
   },
   "requiredFields": {
     "schemas/v1/common/actor-context.schema.json": ["userId", "sessionId", "roles"],
@@ -25,6 +26,10 @@
     "schemas/v1/projects/archive-project-command.schema.json": ["projectId"],
     "schemas/v1/projects/restore-project-command.schema.json": ["projectId"],
     "schemas/v1/projects/project-response.schema.json": ["id", "name", "status", "framework", "createdAt", "updatedAt", "archivedAt"],
-    "schemas/v1/projects/projects-page-response.schema.json": ["items"]
+    "schemas/v1/projects/projects-page-response.schema.json": ["items"],
+    "schemas/v1/uploads/create-upload-command.schema.json": ["projectId", "originalName", "mediaType", "sizeBytes", "sha256"],
+    "schemas/v1/uploads/put-upload-part-command.schema.json": ["projectId", "uploadId", "partNumber", "data"],
+    "schemas/v1/uploads/upload-part-response.schema.json": ["uploadId", "partNumber", "sizeBytes"],
+    "schemas/v1/uploads/complete-upload-command.schema.json": ["projectId", "uploadId", "partCount"]
   }
 }

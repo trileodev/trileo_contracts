@@ -2106,6 +2106,69 @@ SCHEMAS: Final[dict[str, dict[str, Any]]] = {
             },
         },
     },
+    "https://contracts.trileo.dev/v1/uploads/complete-upload-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/uploads/complete-upload-command.schema.json",
+        "title": "CompleteUploadCommand",
+        "description": "Asks Project to assemble parts 1..partCount and verify them. Completing a terminal upload returns the stored row unchanged.",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "projectId",
+            "uploadId",
+            "partCount",
+        ],
+        "properties": {
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "uploadId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "partCount": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 160,
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/uploads/create-upload-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/uploads/create-upload-command.schema.json",
+        "title": "CreateUploadCommand",
+        "description": "Declares an upload before its bytes are sent. Sent in OrganizationServiceRequest; Project requires the envelope's idempotencyKey. sizeBytes, sha256 and mediaType are claims that Project verifies against the received bytes.",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "projectId",
+            "originalName",
+            "mediaType",
+            "sizeBytes",
+            "sha256",
+        ],
+        "properties": {
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "originalName": {
+                "$ref": "upload-original-name.schema.json",
+            },
+            "mediaType": {
+                "$ref": "media-type.schema.json",
+            },
+            "sizeBytes": {
+                "type": "integer",
+                "minimum": 1,
+            },
+            "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$(?![\\r\\n\\u2028\\u2029])",
+            },
+        },
+    },
     "https://contracts.trileo.dev/v1/uploads/get-upload-query.schema.json": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "$id": "https://contracts.trileo.dev/v1/uploads/get-upload-query.schema.json",
@@ -2165,6 +2228,41 @@ SCHEMAS: Final[dict[str, dict[str, Any]]] = {
         "maxLength": 255,
         "pattern": "^[a-z0-9][a-z0-9!#$&^_.+-]{0,126}/[a-z0-9][a-z0-9!#$&^_.+-]{0,126}$(?![\\r\\n\\u2028\\u2029])",
     },
+    "https://contracts.trileo.dev/v1/uploads/put-upload-part-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/uploads/put-upload-part-command.schema.json",
+        "title": "PutUploadPartCommand",
+        "description": "One part of an upload's bytes. data is padded, canonical standard base64 (RFC 4648 section 4) of 1 to 524288 bytes. Re-sending a partNumber overwrites that part.",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "projectId",
+            "uploadId",
+            "partNumber",
+            "data",
+        ],
+        "properties": {
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "uploadId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "partNumber": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 160,
+            },
+            "data": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 699052,
+                "pattern": "^(?:[A-Za-z0-9+/]{4}){0,174762}(?:[A-Za-z0-9+/][AQgw]==|[A-Za-z0-9+/]{2}[AEIMQUYcgkosw048]=)?$(?![\\r\\n\\u2028\\u2029])",
+            },
+        },
+    },
     "https://contracts.trileo.dev/v1/uploads/upload-original-name.schema.json": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "$id": "https://contracts.trileo.dev/v1/uploads/upload-original-name.schema.json",
@@ -2174,6 +2272,35 @@ SCHEMAS: Final[dict[str, dict[str, Any]]] = {
         "maxLength": 255,
         "pattern": "^[^/\\\\\\u0000-\\u001f\\u007f-\\u009f\\u061c\\u200e\\u200f\\u202a-\\u202e\\u2066-\\u2069\\ufeff\\u0020\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000](?:[^/\\\\\\u0000-\\u001f\\u007f-\\u009f\\u061c\\u200e\\u200f\\u202a-\\u202e\\u2066-\\u2069\\ufeff]*[^/\\\\\\u0000-\\u001f\\u007f-\\u009f\\u061c\\u200e\\u200f\\u202a-\\u202e\\u2066-\\u2069\\ufeff\\u0020\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000])?$(?![\\r\\n\\u2028\\u2029])",
         "description": "Display-only filename. Rejects path separators, C0/C1 controls, BOM and bidi controls everywhere; Unicode whitespace is allowed only inside the name. Explicit character ranges keep JavaScript and Python validation identical.",
+    },
+    "https://contracts.trileo.dev/v1/uploads/upload-part-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/uploads/upload-part-response.schema.json",
+        "title": "UploadPartResponse",
+        "description": "Acknowledges one staged part. sizeBytes is the decoded size of that part.",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "uploadId",
+            "partNumber",
+            "sizeBytes",
+        ],
+        "properties": {
+            "uploadId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "partNumber": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 160,
+            },
+            "sizeBytes": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 524288,
+            },
+        },
     },
     "https://contracts.trileo.dev/v1/uploads/upload-response.schema.json": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -2530,10 +2657,14 @@ SCHEMA_BY_TITLE: Final[dict[str, str]] = {
     "RevokeSessionCommand": "https://contracts.trileo.dev/v1/sessions/revoke-session-command.schema.json",
     "SessionResponse": "https://contracts.trileo.dev/v1/sessions/session-response.schema.json",
     "SessionsPageResponse": "https://contracts.trileo.dev/v1/sessions/sessions-page-response.schema.json",
+    "CompleteUploadCommand": "https://contracts.trileo.dev/v1/uploads/complete-upload-command.schema.json",
+    "CreateUploadCommand": "https://contracts.trileo.dev/v1/uploads/create-upload-command.schema.json",
     "GetUploadQuery": "https://contracts.trileo.dev/v1/uploads/get-upload-query.schema.json",
     "ListUploadsQuery": "https://contracts.trileo.dev/v1/uploads/list-uploads-query.schema.json",
     "MediaType": "https://contracts.trileo.dev/v1/uploads/media-type.schema.json",
+    "PutUploadPartCommand": "https://contracts.trileo.dev/v1/uploads/put-upload-part-command.schema.json",
     "UploadOriginalName": "https://contracts.trileo.dev/v1/uploads/upload-original-name.schema.json",
+    "UploadPartResponse": "https://contracts.trileo.dev/v1/uploads/upload-part-response.schema.json",
     "UploadResponse": "https://contracts.trileo.dev/v1/uploads/upload-response.schema.json",
     "UploadStatus": "https://contracts.trileo.dev/v1/uploads/upload-status.schema.json",
     "UploadsPageResponse": "https://contracts.trileo.dev/v1/uploads/uploads-page-response.schema.json",

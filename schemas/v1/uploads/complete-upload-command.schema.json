@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/uploads/complete-upload-command.schema.json",
+  "title": "CompleteUploadCommand",
+  "description": "Asks Project to assemble parts 1..partCount and verify them. Completing a terminal upload returns the stored row unchanged.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "projectId",
+    "uploadId",
+    "partCount"
+  ],
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "uploadId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "partCount": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 160
+    }
+  }
+}

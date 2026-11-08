@@ -492,6 +492,20 @@ class SessionsPageResponse(TypedDict):
     nextCursor: NotRequired[str]
 
 
+class CompleteUploadCommand(TypedDict):
+    projectId: str
+    uploadId: str
+    partCount: int
+
+
+class CreateUploadCommand(TypedDict):
+    projectId: str
+    originalName: UploadOriginalName
+    mediaType: MediaType
+    sizeBytes: int
+    sha256: str
+
+
 class GetUploadQuery(TypedDict):
     projectId: str
     uploadId: str
@@ -507,7 +521,20 @@ class ListUploadsQuery(TypedDict):
 MediaType = str
 
 
+class PutUploadPartCommand(TypedDict):
+    projectId: str
+    uploadId: str
+    partNumber: int
+    data: str
+
+
 UploadOriginalName = str
+
+
+class UploadPartResponse(TypedDict):
+    uploadId: str
+    partNumber: int
+    sizeBytes: int
 
 
 class UploadResponse(TypedDict):

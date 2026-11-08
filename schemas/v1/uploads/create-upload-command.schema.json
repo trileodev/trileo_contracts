@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/uploads/create-upload-command.schema.json",
+  "title": "CreateUploadCommand",
+  "description": "Declares an upload before its bytes are sent. Sent in OrganizationServiceRequest; Project requires the envelope's idempotencyKey. sizeBytes, sha256 and mediaType are claims that Project verifies against the received bytes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "projectId",
+    "originalName",
+    "mediaType",
+    "sizeBytes",
+    "sha256"
+  ],
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "originalName": {
+      "$ref": "upload-original-name.schema.json"
+    },
+    "mediaType": {
+      "$ref": "media-type.schema.json"
+    },
+    "sizeBytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$(?![\\r\\n\\u2028\\u2029])"
+    }
+  }
+}
