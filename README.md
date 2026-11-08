@@ -100,12 +100,30 @@ is idempotent and may be sent more than once), and accepts this subject only in 
 NATS has no publisher credentials yet (D27), so the single-publisher rule is enforced by review and
 a static check, not by the transport.
 
-## Project uploads (read side)
+## Project uploads
+
+### Write side (W4, D50)
+
+Bytes travel Gateway → Project over NATS request-reply; Project is the only subscriber and the
+Gateway the only publisher. All three use `OrganizationServiceRequest`.
+
+| Subject | Payload → reply | Notes |
+|---|---|---|
+| `uploads.create.v1` | `CreateUploadCommand` → `UploadResponse` (`pending`) | Declares name, media type, size and SHA-256. **`idempotencyKey` is required by Project** (the shared envelope leaves it optional, so the schema cannot); a replay returns the same upload |
+| `uploads.parts.put.v1` | `PutUploadPartCommand` → `UploadPartResponse` | One part: `partNumber` 1–160, `data` canonical padded base64 of at most 524,288 bytes (699,052 characters). Parts are sent in order; a part may be re-sent |
+| `uploads.complete.v1` | `CompleteUploadCommand` → `UploadResponse` | `partCount` 1–160. Project assembles, checks size, hash and sniffed type, and ends the upload `ready` or `rejected` |
+
+The browser never sees parts: it sends a JSON declare and then the raw bytes in one `PUT …/content`,
+which the Gateway cuts into parts. The Gateway re-reads the caller's organization role before
+`complete` (D53). At most 5 `pending` or `ready` uploads per project (D52); the stale-upload reaper
+ends abandoned `pending` uploads as `failed` / `UPLOAD_EXPIRED`. No payload carries an organization,
+uploader, status or storage field.
+
+### Read side
 
 `uploads.get.v1` (`GetUploadQuery` → `UploadResponse`) and `uploads.list.v1`
-(`ListUploadsQuery` → `UploadsPageResponse`) use `OrganizationServiceRequest`. **No service
-serves or calls them until W4**, which also defines `uploads.create.v1` and the byte-transfer and
-completion subjects once the transport is chosen. Lists are ordered by `createdAt` descending,
+(`ListUploadsQuery` → `UploadsPageResponse`) use `OrganizationServiceRequest`. No service serves
+or calls them yet; the first consumer is W8. Lists are ordered by `createdAt` descending,
 then `id` descending; without a `status` filter every status is listed.
 
 - `UploadResponse` never carries the storage driver or storage key (`additionalProperties: false`).
@@ -125,6 +143,8 @@ then `id` descending; without a `status` filter every status is listed.
 | `rejected` | `SIZE_MISMATCH`, `HASH_MISMATCH` | The received bytes differ from the declaration |
 | `failed` | `STORAGE_ERROR` | The storage driver failed |
 | `failed` | `UPLOAD_EXPIRED` | The stale-upload reaper ended a `pending` upload |
+
+These codes and their user-facing copy are unchanged by W4.
 
 Run `uv sync --frozen --extra dev` once, then `npm run check:generated`, `npm run verify`
 and `npm run build`. CI runs those checks with Node 24 and Python 3.14. npm dependencies
