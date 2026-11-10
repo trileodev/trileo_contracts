@@ -9,7 +9,8 @@
     "sessionsRevoke": "sessions.revoke.v1", "sessionsRevokeAll": "sessions.revoke-all.v1",
     "projectsCreate": "projects.create.v1", "projectsList": "projects.list.v1", "projectsGet": "projects.get.v1",
     "projectsUpdate": "projects.update.v1", "projectsArchive": "projects.archive.v1", "projectsRestore": "projects.restore.v1",
-    "uploadsCreate": "uploads.create.v1", "uploadsPutPart": "uploads.parts.put.v1", "uploadsComplete": "uploads.complete.v1"
+    "uploadsCreate": "uploads.create.v1", "uploadsPutPart": "uploads.parts.put.v1", "uploadsComplete": "uploads.complete.v1",
+    "sandboxesGet": "sandboxes.get.v1", "sandboxesStart": "sandboxes.start.v1", "sandboxesStop": "sandboxes.stop.v1"
   },
   "requiredFields": {
     "schemas/v1/common/actor-context.schema.json": ["userId", "sessionId", "roles"],
@@ -30,6 +31,10 @@
     "schemas/v1/uploads/create-upload-command.schema.json": ["projectId", "originalName", "mediaType", "sizeBytes", "sha256"],
     "schemas/v1/uploads/put-upload-part-command.schema.json": ["projectId", "uploadId", "partNumber", "data"],
     "schemas/v1/uploads/upload-part-response.schema.json": ["uploadId", "partNumber", "sizeBytes"],
-    "schemas/v1/uploads/complete-upload-command.schema.json": ["projectId", "uploadId", "partCount"]
+    "schemas/v1/uploads/complete-upload-command.schema.json": ["projectId", "uploadId", "partCount"],
+    "schemas/v1/sandboxes/get-sandbox-query.schema.json": ["projectId"],
+    "schemas/v1/sandboxes/start-sandbox-command.schema.json": ["projectId"],
+    "schemas/v1/sandboxes/stop-sandbox-command.schema.json": ["projectId"],
+    "schemas/v1/sandboxes/sandbox-response.schema.json": ["projectId", "status", "statusReasonCode", "generation", "statusChangedAt", "lastReadyAt"]
   }
 }

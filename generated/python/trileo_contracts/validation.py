@@ -918,6 +918,56 @@ def is_update_project_command(value: Any) -> bool:
     return _is_valid("https://contracts.trileo.dev/v1/projects/update-project-command.schema.json", value)
 
 
+def validate_get_sandbox_query(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid GetSandboxQuery."""
+    _validate("https://contracts.trileo.dev/v1/sandboxes/get-sandbox-query.schema.json", value)
+
+
+def is_get_sandbox_query(value: Any) -> bool:
+    """True when *value* is a valid GetSandboxQuery."""
+    return _is_valid("https://contracts.trileo.dev/v1/sandboxes/get-sandbox-query.schema.json", value)
+
+
+def validate_sandbox_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid SandboxResponse."""
+    _validate("https://contracts.trileo.dev/v1/sandboxes/sandbox-response.schema.json", value)
+
+
+def is_sandbox_response(value: Any) -> bool:
+    """True when *value* is a valid SandboxResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/sandboxes/sandbox-response.schema.json", value)
+
+
+def validate_sandbox_status(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid SandboxStatus."""
+    _validate("https://contracts.trileo.dev/v1/sandboxes/sandbox-status.schema.json", value)
+
+
+def is_sandbox_status(value: Any) -> bool:
+    """True when *value* is a valid SandboxStatus."""
+    return _is_valid("https://contracts.trileo.dev/v1/sandboxes/sandbox-status.schema.json", value)
+
+
+def validate_start_sandbox_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid StartSandboxCommand."""
+    _validate("https://contracts.trileo.dev/v1/sandboxes/start-sandbox-command.schema.json", value)
+
+
+def is_start_sandbox_command(value: Any) -> bool:
+    """True when *value* is a valid StartSandboxCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/sandboxes/start-sandbox-command.schema.json", value)
+
+
+def validate_stop_sandbox_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid StopSandboxCommand."""
+    _validate("https://contracts.trileo.dev/v1/sandboxes/stop-sandbox-command.schema.json", value)
+
+
+def is_stop_sandbox_command(value: Any) -> bool:
+    """True when *value* is a valid StopSandboxCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/sandboxes/stop-sandbox-command.schema.json", value)
+
+
 def validate_get_current_session_query(value: Any) -> None:
     """Raise ContractViolation unless *value* is a valid GetCurrentSessionQuery."""
     _validate("https://contracts.trileo.dev/v1/sessions/get-current-session-query.schema.json", value)

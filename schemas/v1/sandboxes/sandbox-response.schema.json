@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/sandboxes/sandbox-response.schema.json",
+  "title": "SandboxResponse",
+  "description": "Stored state of a project's sandbox. generation is the lifecycle operation identifier: poll sandboxes.get.v1 until the status for that generation is final. Carries no infrastructure detail.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "projectId",
+    "status",
+    "statusReasonCode",
+    "generation",
+    "statusChangedAt",
+    "lastReadyAt"
+  ],
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "status": {
+      "$ref": "sandbox-status.schema.json"
+    },
+    "statusReasonCode": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[A-Z][A-Z0-9_]{1,63}$(?![\\r\\n\\u2028\\u2029])"
+    },
+    "generation": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "statusChangedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "lastReadyAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "not_provisioned"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "statusReasonCode": {
+            "type": "null"
+          },
+          "generation": {
+            "type": "integer",
+            "const": 0
+          },
+          "statusChangedAt": {
+            "type": "null"
+          },
+          "lastReadyAt": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "generation": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "failed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "statusReasonCode": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]{1,63}$(?![\\r\\n\\u2028\\u2029])"
+          }
+        }
+      }
+    }
+  ]
+}
