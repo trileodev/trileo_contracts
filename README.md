@@ -189,6 +189,7 @@ ending), not an enum, so new codes need no contract change. `failed` always has 
 | `failed` | `START_FAILED` | The sandbox process crashed before it was ready |
 | `failed` | `CLUSTER_UNAVAILABLE` | The cluster stayed unreachable past the deadline |
 | `failed` | `PROVISION_TIMEOUT`, `START_TIMEOUT` | First provisioning, or a later start, passed its deadline with no other cause |
+| `failed` | `STOP_TIMEOUT` | A stop passed its deadline with the cluster reachable |
 | `starting` | `RESTARTING` | The running sandbox lost readiness (crash, eviction, node restart) and is coming back |
 | `stopping`, `stopped` | `USER_REQUESTED` | Stopped by `sandboxes.stop.v1` |
 | `stopping`, `stopped` | `PROJECT_ARCHIVED` | The project was archived; restoring it does not start the sandbox |
