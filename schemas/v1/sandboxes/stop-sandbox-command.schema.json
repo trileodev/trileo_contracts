@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/sandboxes/stop-sandbox-command.schema.json",
+  "title": "StopSandboxCommand",
+  "description": "Sets the desired state of the project's sandbox to stopped and returns the stored state immediately. Idempotent by desired state; an envelope idempotencyKey is ignored.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "projectId"
+  ],
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

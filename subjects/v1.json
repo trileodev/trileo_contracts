@@ -57,5 +57,8 @@
   "uploadsList": "uploads.list.v1",
   "uploadsCreate": "uploads.create.v1",
   "uploadsPutPart": "uploads.parts.put.v1",
-  "uploadsComplete": "uploads.complete.v1"
+  "uploadsComplete": "uploads.complete.v1",
+  "sandboxesGet": "sandboxes.get.v1",
+  "sandboxesStart": "sandboxes.start.v1",
+  "sandboxesStop": "sandboxes.stop.v1"
 }

@@ -7,7 +7,7 @@ describe("versioned subject registry", () => {
   it("contains unique lowercase versioned subjects", async () => {
     const registry = JSON.parse(await readFile(resolve(root, "subjects/v1.json"), "utf8")) as Record<string, string>;
     const values = Object.values(registry);
-    expect(values.length).toBe(59);
+    expect(values.length).toBe(62);
     expect(registry.projectsRestore).toBe("projects.restore.v1");
     expect(registry.organizationsCreate).toBe("organizations.create.v1");
     expect(registry.organizationProjectsCreate).toBe("projects.create.v2");
@@ -18,6 +18,9 @@ describe("versioned subject registry", () => {
     expect(registry.uploadsCreate).toBe("uploads.create.v1");
     expect(registry.uploadsPutPart).toBe("uploads.parts.put.v1");
     expect(registry.uploadsComplete).toBe("uploads.complete.v1");
+    expect(registry.sandboxesGet).toBe("sandboxes.get.v1");
+    expect(registry.sandboxesStart).toBe("sandboxes.start.v1");
+    expect(registry.sandboxesStop).toBe("sandboxes.stop.v1");
     expect(new Set(values).size).toBe(values.length);
     for (const subject of values) expect(subject).toMatch(/^[a-z][a-z0-9-]*(\.[a-z0-9-]+)*\.v[12]$/);
   });

@@ -1977,6 +1977,176 @@ SCHEMAS: Final[dict[str, dict[str, Any]]] = {
             },
         },
     },
+    "https://contracts.trileo.dev/v1/sandboxes/get-sandbox-query.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/sandboxes/get-sandbox-query.schema.json",
+        "title": "GetSandboxQuery",
+        "description": "Reads the stored state of the project's sandbox. Never creates one and never waits on the cluster.",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "projectId",
+        ],
+        "properties": {
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/sandboxes/sandbox-response.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/sandboxes/sandbox-response.schema.json",
+        "title": "SandboxResponse",
+        "description": "Stored state of a project's sandbox. generation is the lifecycle operation identifier: poll sandboxes.get.v1 until the status for that generation is final. Carries no infrastructure detail.",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "projectId",
+            "status",
+            "statusReasonCode",
+            "generation",
+            "statusChangedAt",
+            "lastReadyAt",
+        ],
+        "properties": {
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+            "status": {
+                "$ref": "sandbox-status.schema.json",
+            },
+            "statusReasonCode": {
+                "type": [
+                    "string",
+                    "null",
+                ],
+                "pattern": "^[A-Z][A-Z0-9_]{1,63}$(?![\\r\\n\\u2028\\u2029])",
+            },
+            "generation": {
+                "type": "integer",
+                "minimum": 0,
+            },
+            "statusChangedAt": {
+                "type": [
+                    "string",
+                    "null",
+                ],
+                "format": "date-time",
+            },
+            "lastReadyAt": {
+                "type": [
+                    "string",
+                    "null",
+                ],
+                "format": "date-time",
+            },
+        },
+        "allOf": [
+            {
+                "if": {
+                    "properties": {
+                        "status": {
+                            "const": "not_provisioned",
+                        },
+                    },
+                },
+                "then": {
+                    "properties": {
+                        "statusReasonCode": {
+                            "type": "null",
+                        },
+                        "generation": {
+                            "type": "integer",
+                            "const": 0,
+                        },
+                        "statusChangedAt": {
+                            "type": "null",
+                        },
+                        "lastReadyAt": {
+                            "type": "null",
+                        },
+                    },
+                },
+                "else": {
+                    "properties": {
+                        "generation": {
+                            "type": "integer",
+                            "minimum": 1,
+                        },
+                    },
+                },
+            },
+            {
+                "if": {
+                    "properties": {
+                        "status": {
+                            "const": "failed",
+                        },
+                    },
+                },
+                "then": {
+                    "properties": {
+                        "statusReasonCode": {
+                            "type": "string",
+                            "pattern": "^[A-Z][A-Z0-9_]{1,63}$(?![\\r\\n\\u2028\\u2029])",
+                        },
+                    },
+                },
+            },
+        ],
+    },
+    "https://contracts.trileo.dev/v1/sandboxes/sandbox-status.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/sandboxes/sandbox-status.schema.json",
+        "title": "SandboxStatus",
+        "description": "Lifecycle status of a project's sandbox. not_provisioned is only ever returned by sandboxes.get.v1 and never stored. The set covers 2.1 and 2.2; adding a value later would need a new subject.",
+        "type": "string",
+        "enum": [
+            "not_provisioned",
+            "provisioning",
+            "starting",
+            "running",
+            "stopping",
+            "stopped",
+            "failed",
+        ],
+    },
+    "https://contracts.trileo.dev/v1/sandboxes/start-sandbox-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/sandboxes/start-sandbox-command.schema.json",
+        "title": "StartSandboxCommand",
+        "description": "Sets the desired state of the project's sandbox to running and returns the stored state immediately. Idempotent by desired state; an envelope idempotencyKey is ignored.",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "projectId",
+        ],
+        "properties": {
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
+    "https://contracts.trileo.dev/v1/sandboxes/stop-sandbox-command.schema.json": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://contracts.trileo.dev/v1/sandboxes/stop-sandbox-command.schema.json",
+        "title": "StopSandboxCommand",
+        "description": "Sets the desired state of the project's sandbox to stopped and returns the stored state immediately. Idempotent by desired state; an envelope idempotencyKey is ignored.",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "projectId",
+        ],
+        "properties": {
+            "projectId": {
+                "type": "string",
+                "format": "uuid",
+            },
+        },
+    },
     "https://contracts.trileo.dev/v1/sessions/get-current-session-query.schema.json": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "$id": "https://contracts.trileo.dev/v1/sessions/get-current-session-query.schema.json",
@@ -2651,6 +2821,11 @@ SCHEMA_BY_TITLE: Final[dict[str, str]] = {
     "ProjectsPageResponse": "https://contracts.trileo.dev/v1/projects/projects-page-response.schema.json",
     "RestoreProjectCommand": "https://contracts.trileo.dev/v1/projects/restore-project-command.schema.json",
     "UpdateProjectCommand": "https://contracts.trileo.dev/v1/projects/update-project-command.schema.json",
+    "GetSandboxQuery": "https://contracts.trileo.dev/v1/sandboxes/get-sandbox-query.schema.json",
+    "SandboxResponse": "https://contracts.trileo.dev/v1/sandboxes/sandbox-response.schema.json",
+    "SandboxStatus": "https://contracts.trileo.dev/v1/sandboxes/sandbox-status.schema.json",
+    "StartSandboxCommand": "https://contracts.trileo.dev/v1/sandboxes/start-sandbox-command.schema.json",
+    "StopSandboxCommand": "https://contracts.trileo.dev/v1/sandboxes/stop-sandbox-command.schema.json",
     "GetCurrentSessionQuery": "https://contracts.trileo.dev/v1/sessions/get-current-session-query.schema.json",
     "ListSessionsQuery": "https://contracts.trileo.dev/v1/sessions/list-sessions-query.schema.json",
     "RevokeAllSessionsCommand": "https://contracts.trileo.dev/v1/sessions/revoke-all-sessions-command.schema.json",

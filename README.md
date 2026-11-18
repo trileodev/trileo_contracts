@@ -146,6 +146,64 @@ then `id` descending; without a `status` filter every status is listed.
 
 These codes and their user-facing copy are unchanged by W4.
 
+## Project sandboxes (2.1)
+
+Project service is the only subscriber and the only owner of the sandbox lifecycle. All three
+subjects use `OrganizationServiceRequest` and reply `SandboxResponse` inside `ServiceResponse`.
+
+| Subject | Payload | Notes |
+|---|---|---|
+| `sandboxes.get.v1` | `GetSandboxQuery` | Reads the stored state. A project that was never started answers `not_provisioned` and nothing is created |
+| `sandboxes.start.v1` | `StartSandboxCommand` | Sets the desired state to running and replies at once with the stored state; the first start of a project answers `provisioning` |
+| `sandboxes.stop.v1` | `StopSandboxCommand` | Sets the desired state to stopped and replies at once; a project with no sandbox answers `not_provisioned` |
+
+**Publisher.** The intended publisher is the Gateway, which forwards `organizationRole`; Project
+treats its absence as deny. No Gateway route exists yet, so today only tests and the cluster
+acceptance script publish these subjects. The AI service, Main and Frontend must never name them;
+AI → Project sandbox calls will get their own subject family (D27).
+
+**Payloads and trust.** Each payload is `{ projectId }` and nothing else: no organization (it is in
+the envelope), namespace, object name, image, replicas, resources, runtime class, node or status.
+`SandboxResponse` never carries a Service or DNS name, IP, port, node, pod, image or namespace;
+Project derives the address from the project ID internally. `idempotencyKey` is not required:
+start and stop are idempotent by desired state, and a key, if sent, is ignored.
+
+**Polling.** Start and stop never wait on the cluster. `generation` is the operation identifier:
+it rises by one on every change of desired state and on every new start after `failed`, and a
+repeated start or stop returns the same generation. Poll `sandboxes.get.v1` until the status for
+that generation is final (`running`, `stopped` or `failed`).
+
+**Statuses.** `not_provisioned` (never stored; `generation` 0, reason code and timestamps null),
+`provisioning`, `starting`, `running`, `stopping`, `stopped`, `failed`. Any stored status has
+`generation` ≥ 1. The set already covers 2.2's hibernation; a new value would need a `.v2`
+subject. Cluster trouble is never a synchronous error: it is `failed` with a reason code.
+
+**Reason codes.** `statusReasonCode` is a format (`^[A-Z][A-Z0-9_]{1,63}$` with the strict
+ending), not an enum, so new codes need no contract change. `failed` always has one. Initial codes:
+
+| Status | Code | Meaning |
+|---|---|---|
+| `failed` | `IMAGE_PULL_FAILED` | The sandbox image could not be pulled |
+| `failed` | `CAPACITY_UNAVAILABLE` | No room for the sandbox (unschedulable, quota exceeded, storage not bound in time) |
+| `failed` | `RUNTIME_UNAVAILABLE` | The isolated runtime is missing or could not create the sandbox |
+| `failed` | `START_FAILED` | The sandbox process crashed before it was ready |
+| `failed` | `CLUSTER_UNAVAILABLE` | The cluster stayed unreachable past the deadline |
+| `failed` | `PROVISION_TIMEOUT`, `START_TIMEOUT` | First provisioning, or a later start, passed its deadline with no other cause |
+| `failed` | `STOP_TIMEOUT` | A stop passed its deadline with the cluster reachable |
+| `starting` | `RESTARTING` | The running sandbox lost readiness (crash, eviction, node restart) and is coming back |
+| `stopping`, `stopped` | `USER_REQUESTED` | Stopped by `sandboxes.stop.v1` |
+| `stopping`, `stopped` | `PROJECT_ARCHIVED` | The project was archived; restoring it does not start the sandbox |
+| `stopping`, `stopped` | `IDLE` | Reserved for 2.2's hibernation; never set in 2.1 |
+
+**Error codes.** New: `SANDBOX_RUNTIME_DISABLED` (503, `retryable: false`: start or stop while the
+runtime is turned off; get still answers) and `SANDBOX_LIMIT_REACHED` (409, `retryable: false`:
+the organization already has its maximum of live sandboxes). Reused: `VALIDATION_FAILED` (including
+any other envelope or an extra payload field), `RESOURCE_NOT_FOUND`, `FORBIDDEN`, `INTERNAL_ERROR`.
+
+**Screen mapping (for S5, 2.2/2.7/2.8).** `not_provisioned` and `provisioning` → setting up a new
+project; `stopped` and `stopping` → sleeping; `starting` → waking; `running` → ready; `failed` →
+couldn't wake.
+
 Run `uv sync --frozen --extra dev` once, then `npm run check:generated`, `npm run verify`
 and `npm run build`. CI runs those checks with Node 24 and Python 3.14. npm dependencies
 remain pinned by the tracked package-lock.json.

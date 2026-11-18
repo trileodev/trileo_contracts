@@ -460,6 +460,30 @@ class UpdateProjectCommand(TypedDict):
     name: ProjectName
 
 
+class GetSandboxQuery(TypedDict):
+    projectId: str
+
+
+class SandboxResponse(TypedDict):
+    projectId: str
+    status: SandboxStatus
+    statusReasonCode: Any
+    generation: int
+    statusChangedAt: Any
+    lastReadyAt: Any
+
+
+SandboxStatus = Literal["not_provisioned", "provisioning", "starting", "running", "stopping", "stopped", "failed"]
+
+
+class StartSandboxCommand(TypedDict):
+    projectId: str
+
+
+class StopSandboxCommand(TypedDict):
+    projectId: str
+
+
 class GetCurrentSessionQuery(TypedDict):
     pass
 

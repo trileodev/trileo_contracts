@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/sandboxes/get-sandbox-query.schema.json",
+  "title": "GetSandboxQuery",
+  "description": "Reads the stored state of the project's sandbox. Never creates one and never waits on the cluster.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "projectId"
+  ],
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

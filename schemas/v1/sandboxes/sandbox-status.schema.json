@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.trileo.dev/v1/sandboxes/sandbox-status.schema.json",
+  "title": "SandboxStatus",
+  "description": "Lifecycle status of a project's sandbox. not_provisioned is only ever returned by sandboxes.get.v1 and never stored. The set covers 2.1 and 2.2; adding a value later would need a new subject.",
+  "type": "string",
+  "enum": [
+    "not_provisioned",
+    "provisioning",
+    "starting",
+    "running",
+    "stopping",
+    "stopped",
+    "failed"
+  ]
+}
