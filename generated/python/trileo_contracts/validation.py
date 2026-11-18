@@ -978,6 +978,26 @@ def is_sessions_page_response(value: Any) -> bool:
     return _is_valid("https://contracts.trileo.dev/v1/sessions/sessions-page-response.schema.json", value)
 
 
+def validate_complete_upload_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid CompleteUploadCommand."""
+    _validate("https://contracts.trileo.dev/v1/uploads/complete-upload-command.schema.json", value)
+
+
+def is_complete_upload_command(value: Any) -> bool:
+    """True when *value* is a valid CompleteUploadCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/uploads/complete-upload-command.schema.json", value)
+
+
+def validate_create_upload_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid CreateUploadCommand."""
+    _validate("https://contracts.trileo.dev/v1/uploads/create-upload-command.schema.json", value)
+
+
+def is_create_upload_command(value: Any) -> bool:
+    """True when *value* is a valid CreateUploadCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/uploads/create-upload-command.schema.json", value)
+
+
 def validate_get_upload_query(value: Any) -> None:
     """Raise ContractViolation unless *value* is a valid GetUploadQuery."""
     _validate("https://contracts.trileo.dev/v1/uploads/get-upload-query.schema.json", value)
@@ -1008,6 +1028,16 @@ def is_media_type(value: Any) -> bool:
     return _is_valid("https://contracts.trileo.dev/v1/uploads/media-type.schema.json", value)
 
 
+def validate_put_upload_part_command(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid PutUploadPartCommand."""
+    _validate("https://contracts.trileo.dev/v1/uploads/put-upload-part-command.schema.json", value)
+
+
+def is_put_upload_part_command(value: Any) -> bool:
+    """True when *value* is a valid PutUploadPartCommand."""
+    return _is_valid("https://contracts.trileo.dev/v1/uploads/put-upload-part-command.schema.json", value)
+
+
 def validate_upload_original_name(value: Any) -> None:
     """Raise ContractViolation unless *value* is a valid UploadOriginalName."""
     _validate("https://contracts.trileo.dev/v1/uploads/upload-original-name.schema.json", value)
@@ -1016,6 +1046,16 @@ def validate_upload_original_name(value: Any) -> None:
 def is_upload_original_name(value: Any) -> bool:
     """True when *value* is a valid UploadOriginalName."""
     return _is_valid("https://contracts.trileo.dev/v1/uploads/upload-original-name.schema.json", value)
+
+
+def validate_upload_part_response(value: Any) -> None:
+    """Raise ContractViolation unless *value* is a valid UploadPartResponse."""
+    _validate("https://contracts.trileo.dev/v1/uploads/upload-part-response.schema.json", value)
+
+
+def is_upload_part_response(value: Any) -> bool:
+    """True when *value* is a valid UploadPartResponse."""
+    return _is_valid("https://contracts.trileo.dev/v1/uploads/upload-part-response.schema.json", value)
 
 
 def validate_upload_response(value: Any) -> None:
